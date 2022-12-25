@@ -82,6 +82,23 @@ export const load = (async ({ params }) => {
                 }
             })),
             slug: (page.properties.Slug as { formula: { string: string }}).formula.string,
+            authors: await Promise.all((page.properties.Authors as { relation: Array<{ id: string }>}).relation.map(async author => {
+                const author_response = await notion.pages.retrieve({ page_id: author.id })
+
+                if (!("properties" in author_response)) {
+                    throw error(500, {
+                        message: "Notion API returned a result without properties",
+                        code: "NOTION_API_ERROR"
+                    })
+                }
+
+                return {
+                    name: (author_response.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
+                    slug: (author_response.properties.Slug as { formula: { string: string }}).formula.string,
+                    display_picture: (author_response.properties["Display Picture"] as { files: Array<{ file: { url: string } }> }).files[0]?.file.url,
+                }
+            }
+            )),
         }
     })
 
