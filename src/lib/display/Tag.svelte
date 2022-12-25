@@ -1,22 +1,27 @@
 <script lang="ts">
-export let color: "red" | "brand" | "blue" | "white" | "yellow" = "brand"
+export let color: "red" | "brand" | "blue" | "white" | "yellow" | "dark" = "brand"
+export let href: string | undefined = undefined
+$: tag = href ? "a" : "span"
 </script>
 
-<span class="tag {color}">
+<svelte:element this={tag} {href} class="tag {color}" class:interactive={href} role="button">
     <div class="text">
         <slot />
     </div>
-</span>
+</svelte:element>
 <style lang="stylus">
 @import 'variables'
+
+.interactive
+    cursor pointer
 
 .tag
     padding 0 2px
     line-height 1
     font-weight 600
     display inline-flex
-    border-radius 4px
-    color white
+    border-radius 2px
+    color $dark
     background transparify(white, 16%)
     .text
         padding 3px 4px
@@ -25,20 +30,36 @@ export let color: "red" | "brand" | "blue" | "white" | "yellow" = "brand"
     &.brand
         color $brand
         background transparify($brand, 16%)
+        &:hover
+            background transparify($brand, 20%)
 
     &.red
         color $red
         background transparify($red, 16%)
+        &:hover
+            background transparify($red, 20%)
 
     &.blue
         color $blue
         background transparify($blue, 16%)
+        &:hover
+            background transparify($blue, 20%)
 
     &.white
         color white
         background transparify(white, 12%)
+        &:hover
+            background transparify(white, 20%)
 
     &.yellow
         color $yellow
         background transparify($yellow, 16%)
+        &:hover
+            background transparify($yellow, 20%)
+
+    &.dark
+        color $dark
+        background transparify($dark, 16%)
+        &:hover
+            background transparify($dark, 20%)
 </style>

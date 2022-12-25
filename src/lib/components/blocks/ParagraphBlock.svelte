@@ -14,4 +14,6 @@ export let block: BlockResponseWithChildren<ParagraphBlockObjectResponse>
 p
     margin 0
     opacity 0.8
+    &:empty
+        display none
 </style>

@@ -40,8 +40,8 @@ export let underline = false
             bottom 0
             left 0
             right 0
-            top 50%
+            top 60%
             background $brand
-            opacity 0.5
+            opacity 0.6
             z-index -1
 </style>

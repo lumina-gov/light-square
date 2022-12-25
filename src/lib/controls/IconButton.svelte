@@ -1,11 +1,11 @@
 <script lang="ts">
 import { type SvelteComponent, createEventDispatcher } from "svelte"
 
-let dispatch = createEventDispatcher()
+let dispatch = createEventDispatcher<{ click: Event }>()
 
 export let href: string | null = null
 export let icon: typeof SvelteComponent | null = null
-export let opacity = true
+export let opacity = false
 
 $: tag = href ? "a" : "div"
 
@@ -25,6 +25,7 @@ function handle_keyup(e: KeyboardEvent) {
     href={href}
     on:click={clicked}
     on:keyup={handle_keyup}
+    role="button"
     class="button"
     tabindex="0"
     class:opacity
@@ -38,7 +39,6 @@ function handle_keyup(e: KeyboardEvent) {
 .button
     padding 8px
     background none
-    color white
     display inline-flex
     align-items center
     justify-content center
@@ -47,13 +47,11 @@ function handle_keyup(e: KeyboardEvent) {
     font-weight 600
     font-size 24px
     &.opacity
-        color transparify(white, 40%)
+        color transparify($dark, 40%)
     &:hover
-        background transparify(white, 12%)
-        color white
+        background transparify($dark, 12%)
     &:active
-        background transparify(white, 8%)
-        color white
+        background transparify($dark, 8%)
     &:focus-visible
         outline $brand 2px dashed
         outline-offset 2px
