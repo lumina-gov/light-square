@@ -6,6 +6,7 @@ import Breadcrumbs from "$lib/components/misc/Breadcrumbs.svelte"
 import Post from "$lib/components/news/Post.svelte"
 import PageHead from "$lib/components/PageHead.svelte"
 import Heading from "$lib/display/Heading.svelte"
+import Paragraph from "$lib/display/Paragraph.svelte"
 import type { PageData } from "./$types"
 
 export let data: PageData
@@ -20,9 +21,13 @@ export let data: PageData
 </Hero>
 <Hero>
     <Heading level={2}>Latest Posts</Heading>
-    <ResponsiveLayout min_item_size={280}>
-        {#each data.posts as post}
-            <Post post={post}/>
-        {/each}
-    </ResponsiveLayout>
+    {#if data.posts.length > 0}
+        <ResponsiveLayout min_item_size={280}>
+            {#each data.posts as post}
+                <Post post={post}/>
+            {/each}
+        </ResponsiveLayout>
+    {:else}
+        <Paragraph>No posts found.</Paragraph>
+    {/if}
 </Hero>

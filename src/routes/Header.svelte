@@ -50,7 +50,7 @@ export let sidebar_opened = false
             </div>
         </div>
         <div class="side">
-            <IconButton icon={Search}/>
+            <IconButton color="dark" icon={Search} href="/search"/>
         </div>
     </Grid>
 </header>

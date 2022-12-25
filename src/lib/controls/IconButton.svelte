@@ -1,10 +1,13 @@
 <script lang="ts">
+import Icon from "$lib/display/Icon.svelte"
+import type { Prop } from "$lib/utils/typed_props"
 import { type SvelteComponent, createEventDispatcher } from "svelte"
 
 let dispatch = createEventDispatcher<{ click: Event }>()
 
 export let href: string | null = null
-export let icon: typeof SvelteComponent | null = null
+export let icon: typeof SvelteComponent
+export let color: Prop<Icon, "color"> = "dark"
 export let opacity = false
 
 $: tag = href ? "a" : "div"
@@ -30,7 +33,7 @@ function handle_keyup(e: KeyboardEvent) {
     tabindex="0"
     class:opacity
 >
-    <svelte:component this={icon} />
+    <Icon {icon} {color}/>
 </svelte:element>
 
 <style lang="stylus">
