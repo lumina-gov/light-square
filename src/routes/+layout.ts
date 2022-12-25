@@ -1,7 +1,7 @@
 import { alerts_init } from "$lib/stores/alerts"
 import type { LayoutLoad } from "./$types"
 
-export const load: LayoutLoad = async load_event => {
+export const load: LayoutLoad = async () => {
     const alerts = alerts_init([])
 
     return {

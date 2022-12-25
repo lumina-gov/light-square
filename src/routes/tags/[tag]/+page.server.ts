@@ -1,7 +1,7 @@
 import { env } from "$env/dynamic/private"
 import notion_data from "$lib/data/notion_data"
 import { Client } from "@notionhq/client"
-import type { DatePropertyItemObjectResponse, RelationPropertyItemObjectResponse, RichTextItemResponse, TitlePropertyItemObjectResponse } from "@notionhq/client/build/src/api-endpoints"
+import type { DatePropertyItemObjectResponse, RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints"
 import { error } from "@sveltejs/kit"
 import type { PageServerLoad } from "./$types"
 

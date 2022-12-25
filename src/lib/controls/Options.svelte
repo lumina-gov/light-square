@@ -37,6 +37,7 @@ export function focus() {
 </script>
 <ScrollbarRegion>
     {#each options as option, i}
+        <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
         <div class="option"
             bind:this={els[i]}
             on:keyup={e => handle_keypress(e, i)}

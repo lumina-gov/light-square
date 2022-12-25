@@ -12,7 +12,7 @@ let styles = {
     "grid-template-columns": `repeat(${span}, 1fr)`
 }
 
-$: filtered_styles = Object.entries(styles).filter(([key, value]) => value !== undefined).map(([key, value]) => `${key}: ${value}`).join(";")
+$: filtered_styles = Object.entries(styles).filter(([_key, value]) => value !== undefined).map(([key, value]) => `${key}: ${value}`).join(";")
 
 </script>
 <div

@@ -39,6 +39,7 @@ let dropdown_toggled = false
         <div class="tags">
             <slot {search}/>
             {#each values as value}
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <div on:click={() => remove_value(value)} class="selected-option">
                     <slot
                         name="selected"

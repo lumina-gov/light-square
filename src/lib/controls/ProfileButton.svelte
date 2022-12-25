@@ -3,9 +3,11 @@ import Profile from "$lib/display/Profile.svelte"
 
 export let active = false
 </script>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
     on:click|stopPropagation
     tabindex="0"
+    role="button"
     class="profile-button-wrapper"
     class:active>
     <Profile/>

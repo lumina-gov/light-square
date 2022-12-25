@@ -64,15 +64,6 @@ let toggled = false
     justify-content space-between
     align-items center
 
-.icon
-    cursor pointer
-    padding 4px
-    border-radius 4px
-    font-size 20px
-    display inline-flex
-    &:hover
-        background transparify(white, 4%)
-
 .input-group
     display grid
     gap 16px

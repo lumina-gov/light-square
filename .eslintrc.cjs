@@ -25,5 +25,7 @@ module.exports = {
 		"indent": ["error", 4, { "MemberExpression": 1 }],
 		"array-element-newline": ["error", "consistent"],
 		"@typescript-eslint/no-non-null-assertion": "off",
+		// unused params underscore
+		"@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
 	}
 };

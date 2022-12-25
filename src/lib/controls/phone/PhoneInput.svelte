@@ -31,6 +31,7 @@ let search_component: Search
             <Inside>
                 <div
                     tabindex="0"
+                    role="button"
                     on:keypress={event => {
                         if (event.key === "Enter") {
                             open = !open
@@ -69,6 +70,7 @@ let search_component: Search
                     </Dropdown>
                 {/if}
             </Inside>
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div class="input-pseudo-wrapper" on:click={() => input_ref.focus()}>
                 <input
                     bind:this={input_ref}

@@ -1,7 +1,7 @@
 <script lang="ts">
 export let gap = 16
-export let justify_content: "flex-start" | "center" | "flex-end" = "flex-start"
-export let align_items: "flex-start" | "center" | "flex-end" = "flex-start"
+export let justify_content: "flex-start" | "center" | "flex-end" | "stretch" = "flex-start"
+export let align_items: "flex-start" | "center" | "flex-end" | "stretch" = "flex-start"
 export let padding = 0
 export let vertical_padding: number = padding || 0
 export let horizontal_padding: number = padding || 0
