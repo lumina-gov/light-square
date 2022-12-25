@@ -1,10 +1,11 @@
 
 export default {
+    url: "https://lightsquare.org",
     socials: {
         twitter: "https://twitter.com/LightSquare_",
-        facebook: "https://www.facebook.com/luminagov",
-        youtube: "https://www.youtube.com/@luminagov",
+        facebook: "https://www.facebook.com/LightSquareNews",
+        youtube: "https://www.youtube.com/@lightsquarenews",
         tiktok: "https://www.tiktok.com/@luminagov/",
-        email: "gov@lumina.earth",
+        email: "contact@lightsquare.org",
     }
 }

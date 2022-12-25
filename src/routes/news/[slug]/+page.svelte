@@ -3,9 +3,11 @@
 />
 <SchemaComponent schema={schema}/>
 <script lang="ts">
+import { page } from "$app/stores"
 import BlocksArray from "$lib/components/blocks/BlocksArray.svelte"
 import PageHead from "$lib/components/PageHead.svelte"
 import SchemaComponent from "$lib/components/SchemaComponent.svelte"
+import site_data from "$lib/data/site_data"
 import Author from "$lib/display/Author.svelte"
 import Date from "$lib/display/Date.svelte"
 import Grid from "$lib/display/Grid.svelte"
@@ -19,21 +21,17 @@ export let data: PageData
 
 export const schema: WithContext<NewsArticle> = {
     "@context": "https://schema.org",
-    "@id": "https://lumina.earth/",
+    "@id": $page.url.hostname + $page.url.pathname,
     "@type": "NewsArticle",
     "headline": data.post.title,
     "datePublished": data.post.date.toISOString(),
     "author": [
-        {
-            "@type": "GovernmentOrganization",
-            "name": "Lumina",
-            "url": "https://lumina.earth",
-        }
+
     ],
     "publisher": {
-        "@type": "GovernmentOrganization",
-        "name": "Lumina",
-        "url": "https://lumina.earth",
+        "@type": "NewsMediaOrganization",
+        "name": "Light Square",
+        "url": site_data.url,
     },
     "countryOfOrigin": {
         "@type": "Country",
