@@ -2,6 +2,7 @@ import { env } from "$env/dynamic/private"
 import { get_child_blocks_recursive } from "$lib/api/notion_api"
 import notion_data from "$lib/data/notion_data"
 import { Client } from "@notionhq/client"
+import type { DatePropertyItemObjectResponse, RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints"
 import { error } from "@sveltejs/kit"
 import type { PageServerLoad } from "./$types"
 
@@ -53,9 +54,22 @@ export const load = (async ({ params }) => {
 
     return {
         post: {
-            title: (page.properties.Name as unknown as { title: { plain_text: string }[]}).title.map(title => title.plain_text).join(""),
-            date: new Date(Date.parse((page.properties.Published as unknown as { date: { start: string } }).date.start)),
-            tags: (page.properties.Tags as unknown as { multi_select: { name: string }[] }).multi_select.map(tag => tag.name),
+            title: (page.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
+            date: new Date(Date.parse((page.properties.Published as DatePropertyItemObjectResponse).date!.start)),
+            tags: await Promise.all((page.properties.Tags as { relation: Array<{ id: string }>}).relation.map(async tag => {
+                const tag_page = await notion.pages.retrieve({ page_id: tag.id })
+
+                if (!("properties" in tag_page)) {
+                    throw error(500, {
+                        message: "Notion API returned a result without properties",
+                        code: "NOTION_API_ERROR"
+                    })
+                }
+                return {
+                    name: (tag_page.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
+                    slug: (tag_page.properties.Slug as { formula: { string: string }}).formula.string
+                }
+            })),
             blocks
         },
     }
