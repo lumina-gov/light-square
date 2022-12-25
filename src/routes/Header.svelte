@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import IconButton from "$lib/controls/IconButton.svelte"
 import Tag from "$lib/display/Tag.svelte"
 import Logo from "$lib/icons/Logo.svelte"
@@ -7,14 +7,16 @@ import VerticalDots from "svelte-material-icons/DotsVertical.svelte"
 import Search from "svelte-material-icons/Magnify.svelte"
 import Grid from "$lib/display/Grid.svelte"
 import { onMount } from "svelte"
+import Sidebar from "./Sidebar.svelte"
+import ScrimOverlay from "$lib/controls/ScrimOverlay.svelte"
 
-export let tags = [
-    "Technology",
-    "Healthcare",
-    "Education",
-    "Finance",
-    "Business",
-    "Politics",
+export let trending: { title: string, slug: string }[] = [
+    { title: "Politics", slug: "politics" },
+    { title: "Business", slug: "business" },
+    { title: "Technology", slug: "technology" },
+    { title: "Entertainment", slug: "entertainment" },
+    { title: "Sports", slug: "sports" },
+    { title: "Science", slug: "science" },
 ]
 
 let scrolled = false
@@ -26,20 +28,22 @@ onMount(() => {
     })
 })
 
+export let sidebar_opened = false
+
 </script>
 <header class:scrolled>
     <Grid padding_horizontal="16px">
         <div class="side">
-            <IconButton icon={Menu}/>
+            <IconButton icon={Menu} on:click={() => sidebar_opened = !sidebar_opened}/>
         </div>
         <div class="inner">
             <Logo size="28"/>
             <div class="tags">
-                {#each tags as tag, i}
-                    <Tag color="dark" href={`/${tag}`}>
-                        {tag}
+                {#each trending as { slug, title }, i}
+                    <Tag color="dark" href={`/tags/${slug}`}>
+                        {title}
                     </Tag>
-                    {#if i < tags.length - 1}
+                    {#if i < trending.length - 1}
                         <VerticalDots/>
                     {/if}
                 {/each}
@@ -50,6 +54,10 @@ onMount(() => {
         </div>
     </Grid>
 </header>
+{#if sidebar_opened}
+    <Sidebar bind:trending on:close={() => sidebar_opened = false}/>
+    <ScrimOverlay on:close={() => sidebar_opened = false}/>
+{/if}
 <style lang="stylus">
 @import 'variables'
 

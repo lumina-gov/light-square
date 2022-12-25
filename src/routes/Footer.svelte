@@ -63,19 +63,19 @@ export let trending = [
             </div>
             <div>
                 <SmallTitle>Sections</SmallTitle>
-                <div class="sections">
+                <nav class="sections">
                     {#each sections as tag}
                         <a href="/tags/{tag}" class="link">{tag}</a>
                     {/each}
-                </div>
+                </nav>
             </div>
             <div>
                 <SmallTitle>Trending</SmallTitle>
-                <div class="sections-single">
+                <nav class="sections-single">
                     {#each trending as tag}
                         <a href="/tags/{tag}" class="link">{tag}</a>
                     {/each}
-                </div>
+                </nav>
             </div>
             <div>
                 <SmallTitle>Connect With Us</SmallTitle>
@@ -94,11 +94,11 @@ export let trending = [
     </div>
     <div class="middle">
         <div class="inner">
-            <div class="horizontal-links">
+            <nav class="horizontal-links">
                 <a class="link" href="/editorial-policies">Editorial Policies</a>
                 <a class="link" href="/about-us">About Us</a>
                 <a class="link" href="/contact-us">Contact Us</a>
-            </div>
+            </nav>
             <div class="socials">
                 <SocialLink icon={Facebook} href={site_data.socials.facebook}/>
                 <SocialLink icon={Twitter} href={site_data.socials.twitter}/>
@@ -109,7 +109,7 @@ export let trending = [
         </div>
     </div>
     <div class="impressum">
-        ALL CONTENT RELEASED INTO THE PUBLIC DOMAIN <Web/>
+        <Web/> All content released in the public domain
     </div>
 </footer>
 <style lang="stylus">
@@ -157,14 +157,18 @@ footer
             &:first-child
                 border-left none
 
-.sections, .sections-single
+.sections
     display grid
     gap 0 16px
     margin -8px
-    &.sections
-        grid-template-columns 1fr 1fr
-    &.sections-single
-        grid-template-columns 1fr
+    grid-template-columns 1fr 1fr
+    .link
+        text-transform uppercase
+.sections-single
+    display grid
+    gap 0 16px
+    margin -8px
+    grid-template-columns 1fr
     .link
         text-transform uppercase
 
