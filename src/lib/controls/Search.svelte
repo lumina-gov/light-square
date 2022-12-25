@@ -10,6 +10,7 @@ export function focus() {
 }
 
 </script>
+// eslint-disable-next-line a11y-click-events-have-key-events
 <div class="search-wrapper" on:click={() => search_el.focus()}>
     <Magnify/>
     <input

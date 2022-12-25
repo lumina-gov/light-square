@@ -44,6 +44,7 @@ let dropdown_toggled = false
                         {#if typeof options === "function"}
                             <Search bind:search/>
                         {/if}
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
                         <Options
                             on:select={e => select_option(e.detail)}
                             options={available_options}
