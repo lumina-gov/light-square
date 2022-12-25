@@ -7,7 +7,7 @@ export let align: "center" | "flex-start" | "flex-end" = "flex-start"
 <div class="inner" style="
     max-width: {typeof max_width === "number" ? max_width + "px" : max_width};
     gap: {gap}px;
-    padding: {vertical_padding}px 0;
+    padding: {vertical_padding}px 16px;
     align-items: {align};
 ">
     <slot/>
