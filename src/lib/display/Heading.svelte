@@ -16,7 +16,9 @@ export let underline = false
     {#if left_icon}
         <Icon color={left_icon_color} icon={left_icon}/>
     {/if}
-    <slot/>
+    <span>
+        <slot/>
+    </span>
     {#if right_icon}
         <Icon color={right_icon_color} icon={right_icon}/>
     {/if}
@@ -32,16 +34,14 @@ export let underline = false
     margin 0
     position relative
     &.underline
-        padding 0 4px
-        padding-bottom 2px
-        &:before
-            content ""
-            position absolute
-            bottom 0
-            left 0
-            right 0
-            top 60%
-            background $brand
-            opacity 0.6
-            z-index -1
+        span
+            display flex
+            flex-direction column
+            gap 4px
+            &:after
+                content ""
+                height 4px
+                width 100%
+                background $brand
+                opacity 0.6
 </style>
