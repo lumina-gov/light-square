@@ -120,6 +120,7 @@ export const load = (async ({ params }) => {
         author: {
             name: (author.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
             display_picture: (author.properties["Display Picture"] as { files: Array<{ file: { url: string } }> }).files[0]?.file.url,
+            slug: (author.properties.Slug as { formula: { string: string }}).formula.string,
             blocks
         },
         posts: await Promise.all(posts)

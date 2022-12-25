@@ -4,11 +4,13 @@
     type="website"/>
 <SchemaComponent {schema}/>
 <script lang="ts">
+import Hero from "$lib/components/layouts/Hero.svelte"
 import PageHead from "$lib/components/PageHead.svelte"
 import SchemaComponent from "$lib/components/SchemaComponent.svelte"
 import site_data from "$lib/data/site_data"
 import Heading from "$lib/display/Heading.svelte"
 import type { NewsMediaOrganization, WithContext } from "schema-dts"
+import Newspaper from "svelte-material-icons/Newspaper.svelte"
 
 let schema: WithContext<NewsMediaOrganization> = {
     "@context": "https://schema.org",
@@ -27,6 +29,6 @@ let schema: WithContext<NewsMediaOrganization> = {
     ],
 }
 </script>
-
-
-<Heading>Front Page</Heading>
+<Hero>
+    <Heading left_icon={Newspaper}>Front Page</Heading>
+</Hero>
