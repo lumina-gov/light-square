@@ -140,8 +140,7 @@ nav
     width 400px
     height 100vh
     overflow-y auto
-    background transparify(white, 50%)
-    background-blur(10px)
+    background white
     z-index 51
     box-shadow 0 0 10px rgba(0, 0, 0, 0.2)
 
