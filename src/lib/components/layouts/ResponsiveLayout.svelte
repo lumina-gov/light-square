@@ -2,8 +2,8 @@
 export let gap = 16
 export let vertical_gap: number = gap || 0
 export let horizontal_gap: number = gap || 0
-export let justify_content: "flex-start" | "center" | "flex-end" = "flex-start"
-export let align_items: "flex-start" | "center" | "flex-end" = "flex-start"
+export let justify_content: "flex-start" | "center" | "flex-end" | "strech" = "flex-start"
+export let align_items: "flex-start" | "center" | "flex-end" | "strech" = "flex-start"
 export let padding = 0
 export let vertical_padding: number = padding || 0
 export let horizontal_padding: number = padding || 0
@@ -28,6 +28,6 @@ export let min_item_size: number
 .layout
     display grid
     // grid-auto-flow column
-    overflow hidden
+    overflow-x hidden
     width 100%
 </style>
