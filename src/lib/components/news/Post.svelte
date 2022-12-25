@@ -34,6 +34,8 @@ export let post: {
     border 1px solid transparify($dark, 8%)
     padding 16px
     border-radius 8px
+    &:hover
+        background transparify($dark, 4%)
 
     .post-title
         font-size 24px

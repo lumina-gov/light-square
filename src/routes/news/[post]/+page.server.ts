@@ -67,7 +67,7 @@ export const load = (async ({ params }) => {
                 }
                 return {
                     name: (tag_page.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
-                    slug: (tag_page.properties.Slug as { formula: { string: string }}).formula.string
+                    slug: (tag_page.properties.Slug as { formula: { string: string }}).formula.string,
                 }
             })),
             authors: await Promise.all((page.properties.Authors as { relation: Array<{ id: string }>}).relation.map(async author => {
