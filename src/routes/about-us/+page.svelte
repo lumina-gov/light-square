@@ -15,7 +15,7 @@ let links = [
     {
         name: "Editorial Policies",
         url: "/editorial-policies",
-        description: "View our editorial policies and guidelines, including our commitment to accuracy, fairness, and impartiality."
+        description: "View our editorial policies and guidelines, including our commitment to accuracy, objectiveness, and impartiality."
     },
     {
         name: "Authors",
@@ -40,39 +40,54 @@ let links = [
 </Hero>
 <Hero>
     <VerticalLayout max_width={800}>
-        <Heading level={2}>Our Mission</Heading>
-        <Paragraph>
-            Light Square is a non-profit news organization dedicated to delivering high-quality journalism that informs and inspires.
-        </Paragraph>
+        <div class="section">
+            <Heading level={2}>Our Mission</Heading>
+            <Paragraph>
+                Light Square is a non-profit news organization dedicated to delivering high-quality journalism that informs and inspires.
+            </Paragraph>
+        </div>
 
-        <hr>
+        <div class="section">
+            <Heading level={2}>Our Values</Heading>
+            <Paragraph>
+                We believe that journalism should be:
+            </Paragraph>
+            <UnorderedList>
+                <li>Accurate</li>
+                <li>Impartial</li>
+                <li>Transparent</li>
+                <li>Accessible</li>
+                <li>Free</li>
+                <li>Objective</li>
+            </UnorderedList>
+        </div>
 
-        <Heading level={2}>Our Values</Heading>
-        <Paragraph>
-            We believe that journalism should be:
-        </Paragraph>
-        <UnorderedList>
-            <li>Accurate</li>
-            <li>Impartial</li>
-            <li>Transparent</li>
-            <li>Accessible</li>
-            <li>Free</li>
-            <li>Objective</li>
-        </UnorderedList>
 
-        <hr>
+        <div class="section">
+            <Heading level={2}>Our History</Heading>
+            <Paragraph>
+                Light Square was founded in 2021 by the people of Lumina and journalists and technologists who were frustrated by the lack of quality news sources on the internet.
+            </Paragraph>
+            <Paragraph>
+                We believe that the internet should be a place where people can find reliable, unbiased information about the world around them.
+            </Paragraph>
+        </div>
 
-        <Heading level={2}>Our History</Heading>
-        <Paragraph>
-            Light Square was founded in 2021 by a group of journalists and technologists who were frustrated by the lack of quality news sources on the internet.
-        </Paragraph>
-        <Paragraph>
-            We believe that the internet should be a place where people can find reliable, unbiased information about the world around them.
-        </Paragraph>
 
-        <hr>
-
-        <Heading level={2}>More Information</Heading>
+        <div class="section">
+            <Heading level={2}>Our Affiliations</Heading>
+            <Paragraph>
+                Light Square is an independently managed official government organisation of the <a href="https://lumina.earth">Government of Lumina</a>
+            </Paragraph>
+            <Paragraph>
+                Light Square is not affiliated with any other branches or departments of the government and this ensures journalistic independence and integrity.
+            </Paragraph>
+        </div>
+    </VerticalLayout>
+</Hero>
+<Hero translucent={true}>
+    <VerticalLayout max_width={800}>
+        <Heading level={2} underline={true}>More Information</Heading>
         <ResponsiveLayout gap={16} min_item_size={200} align_items="strech">
             {#each links as link}
                 <a href={link.url} class="link">
@@ -85,6 +100,15 @@ let links = [
 </Hero>
 <style lang="stylus">
 @import "variables"
+
+.section
+    padding 16px
+    border-radius 8px
+    display flex
+    flex-direction column
+    gap 12px
+    border 1px solid transparify($dark, 12%)
+    width 100%
 
 .link
     display flex

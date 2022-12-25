@@ -13,6 +13,7 @@ import Icon from "$lib/display/Icon.svelte"
 import ArrowRight from "svelte-material-icons/ArrowRight.svelte"
 import Paragraph from "$lib/display/Paragraph.svelte"
 import FullSocialLink from "$lib/controls/FullSocialLink.svelte"
+import Lumina from "$lib/icons/Lumina.svelte"
 
 export let sections = [
     "World",
@@ -98,6 +99,7 @@ export let trending = [
                 <a class="link" href="/editorial-policies">Editorial Policies</a>
                 <a class="link" href="/about-us">About Us</a>
                 <a class="link" href="/contact-us">Contact Us</a>
+                <a class="link" href="https://lumina.earth">Lumina Government Website</a>
             </nav>
             <div class="socials">
                 <SocialLink icon={Facebook} href={site_data.socials.facebook}/>
@@ -109,7 +111,10 @@ export let trending = [
         </div>
     </div>
     <div class="impressum">
-        <Web/> All content released in the public domain
+        <Lumina size="20px"/> Official Independent Organisation of the Lumina Government
+    </div>
+    <div class="impressum">
+        <Web size="20px"/> All content released in the public domain
     </div>
 </footer>
 <style lang="stylus">
@@ -204,5 +209,6 @@ footer
     justify-content center
     border-top 1px solid transparify(white, 10%)
     color transparify(white, 50%)
+    align-items center
     gap 8px
 </style>
