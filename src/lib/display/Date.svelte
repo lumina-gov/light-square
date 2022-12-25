@@ -28,7 +28,6 @@ $: year = date.getFullYear()
     gap 8px
     align-items center
     font-size 14px
-    color white
     opacity 0.5
     font-weight 600
 </style>

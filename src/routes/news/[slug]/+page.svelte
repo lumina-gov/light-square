@@ -6,6 +6,8 @@
 import BlocksArray from "$lib/components/blocks/BlocksArray.svelte"
 import PageHead from "$lib/components/PageHead.svelte"
 import SchemaComponent from "$lib/components/SchemaComponent.svelte"
+import Author from "$lib/display/Author.svelte"
+import Date from "$lib/display/Date.svelte"
 import Grid from "$lib/display/Grid.svelte"
 import Heading from "$lib/display/Heading.svelte"
 import Paragraph from "$lib/display/Paragraph.svelte"
@@ -44,7 +46,11 @@ export const schema: WithContext<NewsArticle> = {
     <article>
         <div class="head">
             <Heading left_icon={News}>{ data.post.title }</Heading>
-
+            <Author author={{
+                name: "Government of Lumina",
+                src: "/images/app-icon.svg",
+            }}/>
+            <Date date={data.post.date} />
         </div>
         <div class="content">
             <BlocksArray blocks={data.post.blocks} />
@@ -73,6 +79,11 @@ article
     .head
         display flex
         flex-direction column
+        gap 16px
+        .horizontal-flex
+            display flex
+            gap 16px
+            align-items center
     .content
         padding 16px
         max-width 600px
