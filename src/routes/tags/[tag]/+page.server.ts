@@ -105,6 +105,7 @@ export const load = (async ({ params }) => {
     return {
         tag: {
             title: (tag.properties.Name as unknown as { title: { plain_text: string }[]}).title.map(title => title.plain_text).join(""),
+            slug: (tag.properties.Slug as unknown as { formula: { string: string }}).formula.string,
         },
         posts: await Promise.all(posts)
     }
