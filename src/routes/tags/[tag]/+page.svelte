@@ -19,7 +19,3 @@ export let data: PageData
         {/each}
     </ResponsiveLayout>
 </Hero>
-<style lang="stylus">
-@import 'variables'
-
-</style>

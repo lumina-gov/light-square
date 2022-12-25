@@ -3,13 +3,12 @@
     description="Light Square is a news site that aims to provide a balanced and unbiased perspective on the world's most pressing issues."/>
 <script>
 import Hero from "$lib/components/layouts/Hero.svelte"
-import ResponsiveLayout from "$lib/components/layouts/ResponsiveLayout.svelte"
 import VerticalLayout from "$lib/components/layouts/VerticalLayout.svelte"
+import MoreLinks from "$lib/components/misc/MoreLinks.svelte"
 import PageHead from "$lib/components/PageHead.svelte"
 import Heading from "$lib/display/Heading.svelte"
 import Paragraph from "$lib/display/Paragraph.svelte"
 import UnorderedList from "$lib/display/UnorderedList.svelte"
-import ChevronRight from "svelte-material-icons/ChevronRight.svelte"
 
 let links = [
     {
@@ -85,19 +84,7 @@ let links = [
         </div>
     </VerticalLayout>
 </Hero>
-<Hero translucent={true}>
-    <VerticalLayout max_width={800}>
-        <Heading level={2} underline={true}>More Information</Heading>
-        <ResponsiveLayout gap={16} min_item_size={200} align_items="strech">
-            {#each links as link}
-                <a href={link.url} class="link">
-                    <Heading left_icon={ChevronRight} level={3}>{link.name}</Heading>
-                    <Paragraph>{link.description}</Paragraph>
-                </a>
-            {/each}
-        </ResponsiveLayout>
-    </VerticalLayout>
-</Hero>
+<MoreLinks links={links}/>
 <style lang="stylus">
 @import "variables"
 
@@ -109,14 +96,4 @@ let links = [
     gap 12px
     border 1px solid transparify($dark, 12%)
     width 100%
-
-.link
-    display flex
-    flex-direction column
-    gap 8px
-    padding 16px
-    color inherit
-    border-radius 4px
-    border 1px solid transparify($dark, 12%)
-    background white
 </style>

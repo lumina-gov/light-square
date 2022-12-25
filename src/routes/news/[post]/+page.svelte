@@ -13,6 +13,7 @@ import Date from "$lib/display/Date.svelte"
 import Grid from "$lib/display/Grid.svelte"
 import Heading from "$lib/display/Heading.svelte"
 import Paragraph from "$lib/display/Paragraph.svelte"
+import Tags from "$lib/display/Tags.svelte"
 import type { NewsArticle, WithContext } from "schema-dts"
 import News from "svelte-material-icons/Newspaper.svelte"
 import type { PageData } from "./$types"
@@ -43,6 +44,7 @@ export const schema: WithContext<NewsArticle> = {
 <Grid padding_vertical="24px" padding_horizontal="16px">
     <article>
         <div class="head">
+            <Tags tags={data.post.tags} />
             <Heading left_icon={News}>{ data.post.title }</Heading>
             <Authors authors={[{
                 name: "Light Square",

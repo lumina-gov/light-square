@@ -1,6 +1,7 @@
 <script lang="ts">
 import Authors from "$lib/display/Authors.svelte"
 import DateComponent from "$lib/display/Date.svelte"
+import Tags from "$lib/display/Tags.svelte"
 
 
 export let post: {
@@ -18,6 +19,7 @@ export let post: {
 <a href="/news/{post.slug}" class="post">
     <div class="post-title">{post.title}</div>
     <DateComponent date={post.date}/>
+    <Tags tags={post.tags.map(tag => ({ name: tag.name, href: `/tags/${tag.slug}` }))}/>
     <Authors authors={post.authors}/>
 </a>
 

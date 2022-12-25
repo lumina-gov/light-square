@@ -1,14 +1,32 @@
 <PageHead
     title="Editorial Policies & Guidelines"
     description="Light Square sets high standards for the quality of its content, and the information on this site will help you trust those standards."/>
-<script>
-    import Hero from "$lib/components/layouts/Hero.svelte"
-    import VerticalLayout from "$lib/components/layouts/VerticalLayout.svelte"
-    import PageHead from "$lib/components/PageHead.svelte"
-    import Heading from "$lib/display/Heading.svelte"
-    import Paragraph from "$lib/display/Paragraph.svelte"
-    import Quote from "$lib/display/Quote.svelte"
+<script lang="ts">
+import Hero from "$lib/components/layouts/Hero.svelte"
+import VerticalLayout from "$lib/components/layouts/VerticalLayout.svelte"
+import MoreLinks from "$lib/components/misc/MoreLinks.svelte"
+import PageHead from "$lib/components/PageHead.svelte"
+import Heading from "$lib/display/Heading.svelte"
+import Paragraph from "$lib/display/Paragraph.svelte"
+import Quote from "$lib/display/Quote.svelte"
 
+let links = [
+    {
+        name: "Authors",
+        url: "/authors",
+        description: "Meet the team of journalists and writers who make Light Square possible and help us deliver high-quality journalism."
+    },
+    {
+        name: "About Us",
+        url: "/about-us",
+        description: "Learn more about Light Square, including our mission, values, affiliations and history."
+    },
+    {
+        name: "Contact Us",
+        url: "/contact",
+        description: "Get in touch with us to ask questions, make media tips, suggestions, or report a problem."
+    },
+]
 </script>
 <Hero translucent={true}>
     <VerticalLayout max_width={600}>
@@ -87,3 +105,4 @@
         </Paragraph>
     </VerticalLayout>
 </Hero>
+<MoreLinks links={links}/>
