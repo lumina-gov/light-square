@@ -137,7 +137,8 @@ nav
     justify-content space-between
     top 0
     left 0
-    width 400px
+    max-width 400px
+    width 100%
     height 100vh
     overflow-y auto
     background white
