@@ -1,0 +1,25 @@
+{
+    "short_name": "SITE_NAME",
+    "name": "SITE_NAME",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "/images/app-icon.svg",
+            "type": "image/svg+xml",
+            "sizes": "512x512"
+        },
+        {
+            "src": "/images/app-icon.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "background_color": "#15181C",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#7446F6",
+    "shortcuts": [
+
+    ],
+    "description": "Site description"
+}
