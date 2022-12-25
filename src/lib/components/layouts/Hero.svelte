@@ -28,7 +28,7 @@ export let translucent = false
     width 100%
     align-items center
     &.translucent
-        background transparify(white, 2%)
+        background transparify($dark, 6%)
         background-blur(2px)
 
 </style>

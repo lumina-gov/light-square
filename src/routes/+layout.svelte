@@ -51,6 +51,12 @@ import PageLoaderBar from "./PageLoaderBar.svelte"
         font-family 'Prompt', sans-serif
         max-width 100%
 
+    hr
+        border 0
+        border-top 2px solid transparify($dark, 15%)
+        width 100%
+
+
     main
         flex 1
 </style>

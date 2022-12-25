@@ -1,11 +1,14 @@
 <script lang="ts">
 
 export let padding_vertical: string | undefined = undefined
+export let padding_horizontal: string | undefined = undefined
 export let span = 12
 
 let styles = {
     "padding-top": padding_vertical,
     "padding-bottom": padding_vertical,
+    "padding-left": padding_horizontal,
+    "padding-right": padding_horizontal,
     "grid-template-columns": `repeat(${span}, 1fr)`
 }
 

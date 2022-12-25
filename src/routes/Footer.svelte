@@ -64,16 +64,16 @@ export let trending = [
             <div>
                 <SmallTitle>Sections</SmallTitle>
                 <div class="sections">
-                    {#each sections as section}
-                        <a href="/section/{section}" class="link">{section}</a>
+                    {#each sections as tag}
+                        <a href="/tags/{tag}" class="link">{tag}</a>
                     {/each}
                 </div>
             </div>
             <div>
                 <SmallTitle>Trending</SmallTitle>
                 <div class="sections-single">
-                    {#each trending as section}
-                        <a href="/section/{section}" class="link">{section}</a>
+                    {#each trending as tag}
+                        <a href="/tags/{tag}" class="link">{tag}</a>
                     {/each}
                 </div>
             </div>

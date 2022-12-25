@@ -6,6 +6,7 @@ import Menu from "svelte-material-icons/Menu.svelte"
 import VerticalDots from "svelte-material-icons/DotsVertical.svelte"
 import Search from "svelte-material-icons/Magnify.svelte"
 import Grid from "$lib/display/Grid.svelte"
+import { onMount } from "svelte"
 
 export let tags = [
     "Technology",
@@ -15,10 +16,22 @@ export let tags = [
     "Business",
     "Politics",
 ]
+
+let scrolled = false
+
+onMount(() => {
+    scrolled = window.scrollY != 0
+    window.addEventListener("scroll", () => {
+        scrolled = window.scrollY != 0
+    })
+})
+
 </script>
-<header>
-    <Grid>
-        <IconButton icon={Menu}/>
+<header class:scrolled>
+    <Grid padding_horizontal="16px">
+        <div class="side">
+            <IconButton icon={Menu}/>
+        </div>
         <div class="inner">
             <Logo size="28"/>
             <div class="tags">
@@ -32,7 +45,7 @@ export let tags = [
                 {/each}
             </div>
         </div>
-        <div class="end">
+        <div class="side">
             <IconButton icon={Search}/>
         </div>
     </Grid>
@@ -48,6 +61,11 @@ header
     height 60px
     display flex
     align-items center
+    &.scrolled
+        box-shadow 0 0 8px rgba(0, 0, 0, 0.1)
+        background-color transparify(white, 30%)
+        background-blur(10px)
+        z-index 1
 
 .inner
     grid-column span 10
@@ -64,6 +82,7 @@ header
     @media (max-width 1000px)
         display none
 
-.end
-    grid-column 12
+.side
+    display flex
+    justify-content center
 </style>

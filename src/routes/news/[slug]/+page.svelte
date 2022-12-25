@@ -42,7 +42,7 @@ export const schema: WithContext<NewsArticle> = {
 }
 
 </script>
-<Grid padding_vertical="24px">
+<Grid padding_vertical="24px" padding_horizontal="16px">
     <article>
         <div class="head">
             <Heading left_icon={News}>{ data.post.title }</Heading>
@@ -80,10 +80,7 @@ article
         display flex
         flex-direction column
         gap 16px
-        .horizontal-flex
-            display flex
-            gap 16px
-            align-items center
+
     .content
         padding 16px
         max-width 600px
