@@ -1,3 +1,4 @@
+<PageHead title="Error: {error.code}" description={error.message} />
 <script lang="ts">
 import { page } from "$app/stores"
 import Heading from "$lib/display/Heading.svelte"
@@ -5,6 +6,7 @@ import Tag from "$lib/display/Tag.svelte"
 import Alert from "svelte-material-icons/Alert.svelte"
 import Button from "$lib/controls/Button.svelte"
 import Home from "svelte-material-icons/Home.svelte"
+import PageHead from "$lib/components/PageHead.svelte"
 
 $: error = $page.error as NonNullable<typeof $page.error>
 </script>

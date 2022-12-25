@@ -46,11 +46,7 @@ export const schema: WithContext<NewsArticle> = {
         <div class="head">
             <Tags tags={data.post.tags} />
             <Heading left_icon={News}>{ data.post.title }</Heading>
-            <Authors authors={[{
-                name: "Light Square",
-                slug: "light-square",
-                display_picture: "/images/app-icon.svg",
-            }]}/>
+            <Authors authors={data.post.authors}/>
             <Date date={data.post.date} />
         </div>
         <div class="content">

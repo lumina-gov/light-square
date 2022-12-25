@@ -1,9 +1,11 @@
+<PageHead title={data.author.name}/>
 <script lang="ts">
 import Hero from "$lib/components/layouts/Hero.svelte"
 import ResponsiveLayout from "$lib/components/layouts/ResponsiveLayout.svelte"
 import VerticalLayout from "$lib/components/layouts/VerticalLayout.svelte"
 import Breadcrumbs from "$lib/components/misc/Breadcrumbs.svelte"
 import Post from "$lib/components/news/Post.svelte"
+import PageHead from "$lib/components/PageHead.svelte"
 import Heading from "$lib/display/Heading.svelte"
 import Profile from "$lib/display/Profile.svelte"
 import Tag from "$lib/display/Tag.svelte"

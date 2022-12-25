@@ -19,6 +19,7 @@ export let data: PageData
     <Heading underline={true}>{ data.tag.title }</Heading>
 </Hero>
 <Hero>
+    <Heading level={2}>Latest Posts</Heading>
     <ResponsiveLayout min_item_size={280}>
         {#each data.posts as post}
             <Post post={post}/>
