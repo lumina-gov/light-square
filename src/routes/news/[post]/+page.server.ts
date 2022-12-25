@@ -17,7 +17,7 @@ export const load = (async ({ params }) => {
                     property: "Slug",
                     formula: {
                         string: {
-                            equals: params.slug
+                            equals: params.post
                         }
                     }
                 },

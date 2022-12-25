@@ -24,5 +24,6 @@ module.exports = {
 		"quotes": ["error", "double"],
 		"indent": ["error", 4, { "MemberExpression": 1 }],
 		"array-element-newline": ["error", "consistent"],
+		"@typescript-eslint/no-non-null-assertion": "off",
 	}
 };
