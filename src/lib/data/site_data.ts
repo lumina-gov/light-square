@@ -1,5 +1,6 @@
 
 export default {
+    name: "Light Square",
     url: "https://lightsquare.org",
     socials: {
         twitter: "https://twitter.com/LightSquare_",

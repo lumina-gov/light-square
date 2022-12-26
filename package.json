@@ -30,6 +30,7 @@
     "dependencies": {
         "@notionhq/client": "^2.2.3",
         "@resvg/resvg-js": "^2.2.0",
+        "feed": "^4.2.2",
         "marked": "^4.2.4",
         "postcss": "8.4.20",
         "satori": "^0.0.44",

@@ -1,10 +1,7 @@
 <script lang="ts">
-import AlertBar from "./AlertBar.svelte"
-import Footer from "./Footer.svelte"
-import Header from "./Header.svelte"
-import PageLoaderBar from "./PageLoaderBar.svelte"
+    import AlertBar from "./AlertBar.svelte"
+    import PageLoaderBar from "./PageLoaderBar.svelte"
 </script>
-
 <svelte:head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +9,7 @@ import PageLoaderBar from "./PageLoaderBar.svelte"
 </svelte:head>
 <PageLoaderBar/>
 <AlertBar/>
-<Header/>
-<main>
-    <slot/>
-</main>
-<Footer/>
+<slot/>
 
 <style lang="stylus">
 :global
@@ -55,8 +48,4 @@ import PageLoaderBar from "./PageLoaderBar.svelte"
         border 0
         border-top 2px solid transparify($dark, 15%)
         width 100%
-
-
-    main
-        flex 1
 </style>
