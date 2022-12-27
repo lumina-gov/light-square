@@ -3,6 +3,7 @@
 import type { BreadcrumbList, WithContext } from "schema-dts"
 import SchemaComponent from "../SchemaComponent.svelte"
 import ChevronRight from "svelte-material-icons/ChevronRight.svelte"
+import site_data from "$lib/data/site_data"
 export let breadcrumbs: { url: string, name: string }[]
 
 let schema: WithContext<BreadcrumbList> = {
@@ -12,7 +13,7 @@ let schema: WithContext<BreadcrumbList> = {
         "@type": "ListItem",
         "position": index + 1,
         "name": breadcrumb.name,
-        "item": breadcrumb.url
+        "item": site_data.url + breadcrumb.url
     }))
 }
 
