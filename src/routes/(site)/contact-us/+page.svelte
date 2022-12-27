@@ -1,3 +1,7 @@
+<PageHead
+    title="Contact Us"
+    description="Get in touch with us to ask questions, make media tips, suggestions, or report a problem."
+    />
 <script lang="ts">
 import Hero from "$lib/components/layouts/Hero.svelte"
 import VerticalLayout from "$lib/components/layouts/VerticalLayout.svelte"
@@ -8,6 +12,7 @@ import Paragraph from "$lib/display/Paragraph.svelte"
 import Twitter from "svelte-material-icons/Twitter.svelte"
 import Email from "svelte-material-icons/Email.svelte"
 import MoreLinks from "$lib/components/misc/MoreLinks.svelte"
+import PageHead from "$lib/components/PageHead.svelte"
 
 let links = [
     {
