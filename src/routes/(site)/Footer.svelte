@@ -211,4 +211,9 @@ footer
     color transparify(white, 50%)
     align-items center
     gap 8px
+    text-align center
+    font-size 14px
+    @media (max-width $mobile)
+        flex-direction column
+        gap 8px
 </style>
