@@ -26,7 +26,7 @@ export const load = (async () => {
     })
 
     const tags: { [id: string]: Promise<{ name: string, slug: string }> } = {}
-    const authors: { [id: string]: Promise<{ name: string, slug: string, display_picture: string }> } = {}
+    const authors: { [id: string]: Promise<{ name: string, slug: string, display_picture: string | null }> } = {}
 
     async function get_tag(tag_id: string): Promise<{ name: string, slug: string }> {
         if (tag_id in tags) return await tags[tag_id]
@@ -42,7 +42,7 @@ export const load = (async () => {
         return await tags[tag_id]
     }
 
-    async function get_author(author_id: string): Promise<{ name: string, slug: string, display_picture: string }> {
+    async function get_author(author_id: string): Promise<{ name: string, slug: string, display_picture: string | null }> {
         if (author_id in authors) return await authors[author_id]
         authors[author_id] = (async () => {
             const author_page = await notion.pages.retrieve({ page_id: author_id })
@@ -51,7 +51,7 @@ export const load = (async () => {
             return {
                 name: (author_page.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
                 slug: (author_page.properties.Slug as { formula: { string: string }}).formula.string,
-                display_picture: (author_page.properties["Display Picture"] as { files: Array<{ file: { url: string } }> }).files[0]?.file.url,
+                display_picture: (author_page.properties["Display Picture"] as { files: Array<{ file: { url: string } }> }).files[0]?.file.url || null,
             }
         })()
         return await authors[author_id]

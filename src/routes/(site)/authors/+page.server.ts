@@ -17,7 +17,7 @@ export const load = (async () => {
 
         return {
             name: (page.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
-            display_picture: (page.properties["Display Picture"] as { files: Array<{ file: { url: string } }> }).files[0]?.file.url,
+            display_picture: (page.properties["Display Picture"] as { files: Array<{ file: { url: string } }> }).files[0]?.file.url || null,
             slug: (page.properties.Slug as { formula: { string: string }}).formula.string,
         }
     })

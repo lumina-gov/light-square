@@ -12,7 +12,7 @@ export let post: {
     authors: {
         name: string
         slug: string
-        display_picture: string
+        display_picture: string | null
     }[]
 }
 </script>

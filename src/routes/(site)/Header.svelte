@@ -5,7 +5,7 @@ import Logo from "$lib/icons/Logo.svelte"
 import Menu from "svelte-material-icons/Menu.svelte"
 import VerticalDots from "svelte-material-icons/DotsVertical.svelte"
 import Search from "svelte-material-icons/Magnify.svelte"
-import Grid from "$lib/display/Grid.svelte"
+import Grid from "$lib/components/layouts/Grid.svelte"
 import { onMount } from "svelte"
 import Sidebar from "./Sidebar.svelte"
 import ScrimOverlay from "$lib/controls/ScrimOverlay.svelte"
@@ -16,7 +16,6 @@ export let trending: { title: string, slug: string }[] = [
     { title: "Technology", slug: "technology" },
     { title: "Entertainment", slug: "entertainment" },
     { title: "Sports", slug: "sports" },
-    { title: "Science", slug: "science" },
 ]
 
 let scrolled = false
@@ -32,9 +31,12 @@ export let sidebar_opened = false
 
 </script>
 <header class:scrolled>
-    <Grid padding_horizontal="16px">
-        <div class="side">
+    <Grid>
+        <div class="side left">
             <IconButton icon={Menu} on:click={() => sidebar_opened = !sidebar_opened}/>
+            <div class="tablet">
+                <Logo size="28"/>
+            </div>
         </div>
         <div class="inner">
             <Logo size="28"/>
@@ -49,7 +51,7 @@ export let sidebar_opened = false
                 {/each}
             </div>
         </div>
-        <div class="side">
+        <div class="side right">
             <IconButton color="dark" icon={Search} href="/search"/>
         </div>
     </Grid>
@@ -75,22 +77,41 @@ header
         background-blur(10px)
         z-index 1
 
+.tablet
+    display none
+    align-items center
+    @media (max-width $tablet)
+        display flex
+
 .inner
     grid-column span 10
     display flex
     align-items center
     justify-content space-between
     gap 16px
-    padding 0 16px
+    @media (max-width $tablet)
+        display none
 
 .tags
     display flex
     align-items center
+    overflow hidden
     gap 4px
-    @media (max-width 1000px)
-        display none
 
 .side
     display flex
     justify-content center
+    &.left
+        grid-column span 1
+        @media (max-width $tablet)
+            justify-content flex-start
+            gap 8px
+            grid-column span 7
+        @media (max-width $mobile)
+            grid-column span 3
+
+    &.right
+        grid-column span 1
+        @media (max-width $tablet)
+            justify-content flex-end
 </style>

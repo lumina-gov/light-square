@@ -70,7 +70,7 @@ export const load = (async ({ params }) => {
                 return {
                     name: (author_page.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
                     slug: (author_page.properties.Slug as { formula: { string: string }}).formula.string,
-                    display_picture: (author_page.properties["Display Picture"] as { files: Array<{ file: { url: string } }> }).files[0]?.file.url
+                    display_picture: (author_page.properties["Display Picture"] as { files: Array<{ file: { url: string } }> }).files[0]?.file.url || null
                 }
             })),
             blocks

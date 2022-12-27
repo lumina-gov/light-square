@@ -2,7 +2,7 @@
 
 export let authors: {
     name: string
-    display_picture: string
+    display_picture: string | null
     slug: string
 }[]
 
@@ -13,7 +13,9 @@ export let authors: {
     </div>
     {#each authors as author}
         <a class="author" href="/authors/{author.slug}">
-            <img src="{author.display_picture}" alt="{author.name} profile picture" class="author_img">
+            {#if author.display_picture}
+                <img src="{author.display_picture}" alt="{author.name} profile picture" class="author_img">
+            {/if}
             <div class="author_name">
                 {author.name}
             </div>

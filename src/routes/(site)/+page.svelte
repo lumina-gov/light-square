@@ -7,7 +7,7 @@
 import PageHead from "$lib/components/PageHead.svelte"
 import SchemaComponent from "$lib/components/SchemaComponent.svelte"
 import site_data from "$lib/data/site_data"
-import Grid from "$lib/display/Grid.svelte"
+import Grid from "$lib/components/layouts/Grid.svelte"
 import Heading from "$lib/display/Heading.svelte"
 import Icon from "$lib/display/Icon.svelte"
 import Paragraph from "$lib/display/Paragraph.svelte"
@@ -18,6 +18,8 @@ import ArrowRight from "svelte-material-icons/ArrowRight.svelte"
 import Pencil from "svelte-material-icons/Pencil.svelte"
 import PostGrid from "./PostGrid.svelte"
 import type { PageData } from "./$types"
+import FrontPageSection from "./FrontPageSection.svelte"
+import GridItem from "$lib/components/layouts/GridItem.svelte"
 
 let schema: WithContext<NewsMediaOrganization> = {
     "@context": "https://schema.org",
@@ -40,52 +42,70 @@ export let data: PageData
 
 </script>
 <Grid padding_vertical="36px">
-    <div class="content">
+    <GridItem
+        gap={16}
+        columns={{
+            "laptop": "2 / span 10",
+            "tablet": "span 8",
+            "mobile": "span 4"
+        }}>
         <Heading left_icon={Newspaper}>Front Page</Heading>
         <Paragraph>
             Top headlines, analysis and breaking news
         </Paragraph>
-    </div>
+        <FrontPageSection posts={data.latest_news}/>
+    </GridItem>
 </Grid>
 <hr>
 <Grid padding_vertical="36px">
-    <div class="content">
+    <GridItem
+        gap={16}
+        columns={{
+            "laptop": "2 / span 10",
+            "tablet": "span 8",
+            "mobile": "span 4"
+        }}>
         <Heading left_icon={Pencil} level={2}>Editor's Picks</Heading>
         <PostGrid posts={data.editors_picks}/>
-    </div>
+    </GridItem>
 </Grid>
 <hr>
 <a href="/editorial-policies" class="editorial-link">
-    <Grid>
-        <div class="editorial">
+    <Grid padding_vertical="36px">
+        <GridItem
+            gap={16}
+            align_items={{
+                "laptop": "center",
+                "tablet": "flex-start",
+                "mobile": "flex-start"
+            }}
+            flex_direction={{
+                "laptop": "row",
+                "tablet": "column",
+                "mobile": "column"
+            }}
+            columns={{
+                "laptop": "2 / span 10",
+                "tablet": "span 8",
+                "mobile": "span 4"
+            }}>
             <Tag>Editorial Policies</Tag>
             <div class="text">
                 <Paragraph>Read our editorial guiding principles and the standards our journalists follow </Paragraph>
                 <Icon color="brand" icon={ArrowRight}/>
             </div>
-        </div>
+        </GridItem>
     </Grid>
 </a>
 <hr>
 <style lang="stylus">
 @import "variables"
 
-.content
-    grid-column 2 / span 10
+.text
     display flex
-    gap 16px
-    flex-direction column
-
-.editorial
-    grid-column 2 / span 8
-    display flex
+    gap 8px
     align-items center
-    padding 32px 0
-    gap 16px
-    .text
-        display flex
-        gap 8px
-        align-items center
+    flex 1
 
 .editorial-link
     display flex

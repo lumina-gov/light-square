@@ -26,8 +26,8 @@ let contents: Element
     position relative
     display flex
     overflow hidden
-    --svrollbar-track-background transparify(white, 4%)
-    --svrollbar-thumb-background $brand
+    --svrollbar-track-background transparify($dark, 4%)
+    --svrollbar-thumb-background transparify($dark, 20%)
 
 .contents
     width 100%

@@ -91,7 +91,7 @@ export const load = (async ({ params }) => {
                 return {
                     name: (author_response.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
                     slug: (author_response.properties.Slug as { formula: { string: string }}).formula.string,
-                    display_picture: (author_response.properties["Display Picture"] as { files: Array<{ file: { url: string } }> }).files[0]?.file.url,
+                    display_picture: (author_response.properties["Display Picture"] as { files: Array<{ file: { url: string } }> }).files[0]?.file.url || null,
                 }
             }
             )),
@@ -101,7 +101,7 @@ export const load = (async ({ params }) => {
     return {
         author: {
             name: (author.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
-            display_picture: (author.properties["Display Picture"] as { files: Array<{ file: { url: string } }> }).files[0]?.file.url,
+            display_picture: (author.properties["Display Picture"] as { files: Array<{ file: { url: string } }> }).files[0]?.file.url || null,
             slug: (author.properties.Slug as { formula: { string: string }}).formula.string,
             blocks
         },

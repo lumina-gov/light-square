@@ -10,7 +10,7 @@ import SchemaComponent from "$lib/components/SchemaComponent.svelte"
 import site_data from "$lib/data/site_data"
 import Authors from "$lib/display/Authors.svelte"
 import Date from "$lib/display/Date.svelte"
-import Grid from "$lib/display/Grid.svelte"
+import Grid from "$lib/components/layouts/Grid.svelte"
 import Heading from "$lib/display/Heading.svelte"
 import Paragraph from "$lib/display/Paragraph.svelte"
 import Tags from "$lib/display/Tags.svelte"
@@ -41,7 +41,7 @@ export const schema: WithContext<NewsArticle> = {
 }
 
 </script>
-<Grid padding_vertical="24px" padding_horizontal="16px">
+<Grid padding_vertical="24px">
     <article>
         <div class="head">
             <Tags tags={data.post.tags}/>
@@ -85,6 +85,7 @@ article
         border-radius 8px
         margin 0 auto
         width 100%
+        font-size 18px
 
 aside
     grid-column span 3

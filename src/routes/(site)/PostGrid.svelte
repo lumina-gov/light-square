@@ -10,7 +10,7 @@ export let posts: {
     title: string,
     date: Date,
     slug: string,
-    authors: { name: string, slug: string, display_picture: string }[],
+    authors: { name: string, slug: string, display_picture: string | null }[],
 }[] = []
 </script>
 <div class="grid">
@@ -44,6 +44,7 @@ export let posts: {
     padding 16px
     // use box-shadow instead of border to avoid double borders
     box-shadow 1px 1px 0 transparify($dark, 10%)
+    transition background-color 0.2s ease-in-out
     &:hover
         background-color transparify($dark, 10%)
 </style>

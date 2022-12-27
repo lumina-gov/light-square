@@ -22,7 +22,7 @@ let schema: WithContext<Person> = {
     "@type": "Person",
     name: data.author.name,
     url: `${site_data.url}/authors/${data.author.slug}`,
-    image: data.author.display_picture,
+    ...data.author.display_picture && { image: data.author.display_picture },
     // sameAs: data.author.socials.map(social => social.url)
 }
 </script>
@@ -33,7 +33,9 @@ let schema: WithContext<Person> = {
         { name: data.author.name, url: `/authors/${data.author.slug}` }
     ]}/>
     <div class="author">
-        <Profile size="80px" url={data.author.display_picture}/>
+        {#if data.author.display_picture}
+            <Profile size="80px" url={data.author.display_picture}/>
+        {/if}
         <VerticalLayout gap={8}>
             <Tag color="yellow">Journalist</Tag>
             <Heading>{ data.author.name }</Heading>

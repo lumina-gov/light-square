@@ -5,12 +5,14 @@ import VerticalLayout from "../layouts/VerticalLayout.svelte"
 
 export let author: {
     name: string
-    display_picture: string
+    display_picture: string | null
     slug: string
 }
 </script>
 <a href="/authors/{author.slug}" class="author-card">
-    <Profile url={author.display_picture} size="64px"/>
+    {#if author.display_picture}
+        <Profile url={author.display_picture} size="64px"/>
+    {/if}
     <VerticalLayout gap={8}>
         <Tag color="yellow">Journalist</Tag>
         <div class="author-name">
