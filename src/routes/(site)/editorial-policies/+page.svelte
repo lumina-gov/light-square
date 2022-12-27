@@ -23,7 +23,7 @@ let links = [
     },
     {
         name: "Contact Us",
-        url: "/contact",
+        url: "/contact-us",
         description: "Get in touch with us to ask questions, make media tips, suggestions, or report a problem."
     },
 ]
