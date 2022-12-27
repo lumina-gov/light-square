@@ -11,11 +11,12 @@ import Sidebar from "./Sidebar.svelte"
 import ScrimOverlay from "$lib/controls/ScrimOverlay.svelte"
 
 export let trending: { title: string, slug: string }[] = [
+    { title: "World", slug: "world" },
     { title: "Politics", slug: "politics" },
+    { title: "Lumina", slug: "lumina" },
     { title: "Business", slug: "business" },
     { title: "Technology", slug: "technology" },
-    { title: "Entertainment", slug: "entertainment" },
-    { title: "Sports", slug: "sports" },
+    { title: "Education", slug: "education" }
 ]
 
 let scrolled = false

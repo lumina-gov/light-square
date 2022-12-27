@@ -16,33 +16,33 @@ import FullSocialLink from "$lib/controls/FullSocialLink.svelte"
 import Lumina from "$lib/icons/Lumina.svelte"
 
 export let sections = [
-    "World",
-    "Business",
-    "Politics",
-    "Sports",
-    "Science",
-    "Technology",
-    "Entertainment",
-    "Lifestyle",
-    "Opinion",
-    "Arts",
-    "Culture",
-    "Health",
-    "Education",
-    "Economy",
-    "Analysis",
-    "Just In",
+    { name: "World", slug: "world" },
+    { name: "Business", slug: "business" },
+    { name: "Politics", slug: "politics" },
+    { name: "Sports", slug: "sports" },
+    { name: "Science", slug: "science" },
+    { name: "Technology", slug: "technology" },
+    { name: "Entertainment", slug: "entertainment" },
+    { name: "Lifestyle", slug: "lifestyle" },
+    { name: "Opinion", slug: "opinion" },
+    { name: "Arts", slug: "arts" },
+    { name: "Culture", slug: "culture" },
+    { name: "Health", slug: "health" },
+    { name: "Education", slug: "education" },
+    { name: "Economy", slug: "economy" },
+    { name: "Analysis", slug: "analysis" },
+    { name: "Lumina", slug: "lumina" },
 ]
 
 export let trending = [
-    "Technology",
-    "Business",
-    "Government",
-    "Politics",
-    "Sports",
-    "Science",
-    "Entertainment",
-    "Lifestyle",
+    { name: "World", slug: "world" },
+    { name: "Lumina", slug: "lumina" },
+    { name: "Business", slug: "business" },
+    { name: "Politics", slug: "politics" },
+    { name: "Opinion", slug: "opinion" },
+    { name: "Technology", slug: "technology" },
+    { name: "Economy", slug: "economy" },
+    { name: "Education", slug: "education" },
 ]
 </script>
 
@@ -65,16 +65,16 @@ export let trending = [
             <div>
                 <SmallTitle>Sections</SmallTitle>
                 <nav class="sections">
-                    {#each sections as tag}
-                        <a href="/tags/{tag}" class="link">{tag}</a>
+                    {#each sections as { name, slug }}
+                        <a href="/tags/{slug}" class="link">{name}</a>
                     {/each}
                 </nav>
             </div>
             <div>
                 <SmallTitle>Trending</SmallTitle>
                 <nav class="sections-single">
-                    {#each trending as tag}
-                        <a href="/tags/{tag}" class="link">{tag}</a>
+                    {#each trending as { name, slug }}
+                        <a href="/tags/{slug}" class="link">{name}</a>
                     {/each}
                 </nav>
             </div>
