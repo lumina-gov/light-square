@@ -8,5 +8,6 @@ export default {
         youtube: "https://www.youtube.com/@lightsquarenews",
         tiktok: "https://www.tiktok.com/@luminagov/",
         email: "contact@lightsquare.org",
-    }
+    },
+    wikidata: "https://www.wikidata.org/wiki/Q115896504"
 }

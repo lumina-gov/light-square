@@ -34,7 +34,8 @@ let schema: WithContext<NewsMediaOrganization> = {
         site_data.socials.tiktok,
         site_data.socials.twitter,
         site_data.socials.youtube,
-        site_data.url
+        site_data.url,
+        site_data.wikidata
     ],
 }
 
