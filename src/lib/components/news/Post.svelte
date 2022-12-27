@@ -19,7 +19,7 @@ export let post: {
 <a href="/news/{post.slug}" class="post">
     <div class="post-title">{post.title}</div>
     <DateComponent date={post.date}/>
-    <Tags tags={post.tags.map(tag => ({ name: tag.name, href: `/tags/${tag.slug}` }))}/>
+    <Tags tags={post.tags}/>
     <Authors authors={post.authors}/>
 </a>
 

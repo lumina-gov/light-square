@@ -1,6 +1,7 @@
 import { env } from "$env/dynamic/private"
 import notion_data from "$lib/data/notion_data"
-import { Client } from "@notionhq/client"
+import { has_no_properties } from "$lib/utils/notion_errors"
+import { Client, isFullPage } from "@notionhq/client"
 import type { DatePropertyItemObjectResponse, RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints"
 import { error } from "@sveltejs/kit"
 import type { PageServerLoad } from "./$types"
@@ -50,32 +51,17 @@ export const load = (async ({ params }) => {
         }
     })
 
-    if (!("properties" in tag)) {
-        throw error(500, {
-            message: "Notion API returned a result without properties",
-            code: "NOTION_API_ERROR"
-        })
-    }
+    if (!isFullPage(tag)) throw has_no_properties
 
     const posts = pages_response.results.map(async page => {
-        if (!("properties" in page)) {
-            throw error(500, {
-                message: "Notion API returned a result without properties",
-                code: "NOTION_API_ERROR"
-            })
-        }
+        if (!isFullPage(page)) throw has_no_properties
 
         return {
             title: (page.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
             date: new Date(Date.parse((page.properties.Published as DatePropertyItemObjectResponse).date!.start)),
             tags: await Promise.all((page.properties.Tags as { relation: Array<{ id: string }>}).relation.map(async tag => {
                 const tag_response = await notion.pages.retrieve({ page_id: tag.id })
-                if (!("properties" in tag_response)) {
-                    throw error(500, {
-                        message: "Notion API returned a result without properties",
-                        code: "NOTION_API_ERROR"
-                    })
-                }
+                if (!isFullPage(tag_response)) throw has_no_properties
                 return {
                     name: (tag_response.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
                     slug: (tag_response.properties.Slug as { formula: { string: string }}).formula.string,
@@ -85,12 +71,7 @@ export const load = (async ({ params }) => {
             authors: await Promise.all((page.properties.Authors as { relation: Array<{ id: string }>}).relation.map(async author => {
                 const author_response = await notion.pages.retrieve({ page_id: author.id })
 
-                if (!("properties" in author_response)) {
-                    throw error(500, {
-                        message: "Notion API returned a result without properties",
-                        code: "NOTION_API_ERROR"
-                    })
-                }
+                if (!isFullPage(author_response)) throw has_no_properties
 
                 return {
                     name: (author_response.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),

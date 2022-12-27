@@ -1,8 +1,8 @@
 import { env } from "$env/dynamic/private"
 import notion_data from "$lib/data/notion_data"
-import { Client } from "@notionhq/client"
+import { has_no_properties } from "$lib/utils/notion_errors"
+import { Client, isFullPage } from "@notionhq/client"
 import type { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints"
-import { error } from "@sveltejs/kit"
 import type { PageServerLoad } from "./$types"
 
 export const load = (async () => {
@@ -13,12 +13,7 @@ export const load = (async () => {
     })
 
     const items = response.results.map(async page => {
-        if (!("properties" in page)) {
-            throw error(500, {
-                message: "Notion API returned a result without properties",
-                code: "NOTION_API_ERROR"
-            })
-        }
+        if (!isFullPage(page)) throw has_no_properties
 
         return {
             name: (page.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),

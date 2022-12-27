@@ -4,13 +4,20 @@
     type="website"/>
 <SchemaComponent {schema}/>
 <script lang="ts">
-import Hero from "$lib/components/layouts/Hero.svelte"
 import PageHead from "$lib/components/PageHead.svelte"
 import SchemaComponent from "$lib/components/SchemaComponent.svelte"
 import site_data from "$lib/data/site_data"
+import Grid from "$lib/display/Grid.svelte"
 import Heading from "$lib/display/Heading.svelte"
+import Icon from "$lib/display/Icon.svelte"
+import Paragraph from "$lib/display/Paragraph.svelte"
+import Tag from "$lib/display/Tag.svelte"
 import type { NewsMediaOrganization, WithContext } from "schema-dts"
 import Newspaper from "svelte-material-icons/Newspaper.svelte"
+import ArrowRight from "svelte-material-icons/ArrowRight.svelte"
+import Pencil from "svelte-material-icons/Pencil.svelte"
+import PostGrid from "./PostGrid.svelte"
+import type { PageData } from "./$types"
 
 let schema: WithContext<NewsMediaOrganization> = {
     "@context": "https://schema.org",
@@ -28,7 +35,61 @@ let schema: WithContext<NewsMediaOrganization> = {
         site_data.url
     ],
 }
+
+export let data: PageData
+
 </script>
-<Hero>
-    <Heading left_icon={Newspaper}>Front Page</Heading>
-</Hero>
+<Grid padding_vertical="36px">
+    <div class="content">
+        <Heading left_icon={Newspaper}>Front Page</Heading>
+        <Paragraph>
+            Top headlines, analysis and breaking news
+        </Paragraph>
+    </div>
+</Grid>
+<hr>
+<Grid padding_vertical="36px">
+    <div class="content">
+        <Heading left_icon={Pencil} level={2}>Editor's Picks</Heading>
+        <PostGrid posts={data.editors_picks}/>
+    </div>
+</Grid>
+<hr>
+<a href="/editorial-policies" class="editorial-link">
+    <Grid>
+        <div class="editorial">
+            <Tag>Editorial Policies</Tag>
+            <div class="text">
+                <Paragraph>Read our editorial guiding principles and the standards our journalists follow </Paragraph>
+                <Icon color="brand" icon={ArrowRight}/>
+            </div>
+        </div>
+    </Grid>
+</a>
+<hr>
+<style lang="stylus">
+@import "variables"
+
+.content
+    grid-column 2 / span 10
+    display flex
+    gap 16px
+    flex-direction column
+
+.editorial
+    grid-column 2 / span 8
+    display flex
+    align-items center
+    padding 32px 0
+    gap 16px
+    .text
+        display flex
+        gap 8px
+        align-items center
+
+.editorial-link
+    display flex
+    color inherit
+    &:hover
+        background transparify($dark, 10%)
+</style>

@@ -46,6 +46,7 @@
 
     hr
         border 0
-        border-top 2px solid transparify($dark, 15%)
+        border-top 1px solid transparify($dark, 15%)
         width 100%
+        margin 0
 </style>

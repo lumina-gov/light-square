@@ -44,7 +44,7 @@ export const schema: WithContext<NewsArticle> = {
 <Grid padding_vertical="24px" padding_horizontal="16px">
     <article>
         <div class="head">
-            <Tags tags={data.post.tags.map(tag => ({ name: tag.name, href: `/tags/${tag.slug}` }))} />
+            <Tags tags={data.post.tags}/>
             <Heading left_icon={News}>{ data.post.title }</Heading>
             <Authors authors={data.post.authors}/>
             <Date date={data.post.date} />
