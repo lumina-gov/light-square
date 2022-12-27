@@ -25,13 +25,13 @@ export let sections = [
     { name: "Entertainment", slug: "entertainment" },
     { name: "Lifestyle", slug: "lifestyle" },
     { name: "Opinion", slug: "opinion" },
-    { name: "Arts", slug: "arts" },
     { name: "Culture", slug: "culture" },
     { name: "Health", slug: "health" },
     { name: "Education", slug: "education" },
     { name: "Economy", slug: "economy" },
     { name: "Analysis", slug: "analysis" },
     { name: "Lumina", slug: "lumina" },
+    { name: "Finance", slug: "finance" }
 ]
 
 export let trending = [
