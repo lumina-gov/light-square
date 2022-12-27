@@ -2,7 +2,7 @@
     import Grid from "$lib/components/layouts/Grid.svelte"
     import GridItem from "$lib/components/layouts/GridItem.svelte"
     import ScrollbarRegion from "$lib/controls/ScrollbarRegion.svelte"
-    import SimplePost from "./SimplePost.svelte"
+    import SimplePost from "$lib/components/news/SimplePost.svelte"
 
 
 export let posts: {

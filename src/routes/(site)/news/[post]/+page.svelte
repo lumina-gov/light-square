@@ -17,6 +17,8 @@ import Tags from "$lib/display/Tags.svelte"
 import type { NewsArticle, WithContext } from "schema-dts"
 import News from "svelte-material-icons/Newspaper.svelte"
 import type { PageData } from "./$types"
+import SimplePost from "$lib/components/news/SimplePost.svelte"
+import GridItem from "$lib/components/layouts/GridItem.svelte"
 
 export let data: PageData
 
@@ -41,8 +43,15 @@ export const schema: WithContext<NewsArticle> = {
 }
 
 </script>
-<Grid padding_vertical="24px">
-    <article>
+<Grid padding_vertical="24px" vertical_gap={48}>
+    <GridItem
+        tag="article"
+        gap={32}
+        columns={{
+            "laptop": "2 / span 8",
+            "tablet": "2 / span 6",
+            "mobile": "span 4",
+        }}>
         <div class="head">
             <Tags tags={data.post.tags}/>
             <Heading left_icon={News}>{ data.post.title }</Heading>
@@ -52,13 +61,29 @@ export const schema: WithContext<NewsArticle> = {
         <div class="content">
             <BlocksArray blocks={data.post.blocks} />
         </div>
-    </article>
-    <aside>
+    </GridItem>
+    <GridItem
+        tag="aside"
+        gap={16}
+        columns={{
+            "laptop": "span 3",
+            "tablet": "2 / span 6",
+            "mobile": "span 4",
+        }}>
         <Heading level={3}>Latest Articles</Heading>
         <Paragraph>
-            View the latest articles from the blog. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            View the latest articles from the our news section.
         </Paragraph>
-    </aside>
+        <hr>
+        <div class="latest-articles">
+            {#each data.latest_posts as post, i}
+                <SimplePost post={post}/>
+                {#if i < data.latest_posts.length - 1}
+                    <hr>
+                {/if}
+            {/each}
+        </div>
+    </GridItem>
 </Grid>
 <style lang="stylus">
 @import "variables"
@@ -67,29 +92,21 @@ export const schema: WithContext<NewsArticle> = {
     h1
         font-size 32px
 
-article
-    max-width 800px
-    grid-column 2 / span 8
+.head
     display flex
     flex-direction column
-    gap 32px
-    .head
-        display flex
-        flex-direction column
-        gap 16px
-
-    .content
-        padding 16px
-        max-width 600px
-        border 1px solid transparify($dark, 12%)
-        border-radius 8px
-        margin 0 auto
-        width 100%
-        font-size 18px
-
-aside
-    grid-column span 3
     gap 16px
+
+.content
+    padding 16px
+    max-width 600px
+    border 1px solid transparify($dark, 12%)
+    border-radius 8px
+    margin 0 auto
+    width 100%
+    font-size 18px
+
+.latest-articles
     display flex
     flex-direction column
 </style>

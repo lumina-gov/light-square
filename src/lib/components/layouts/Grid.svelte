@@ -1,6 +1,7 @@
 <script lang="ts">
 
 export let padding_vertical: string | undefined = undefined
+export let vertical_gap: number | undefined = undefined
 
 export let columns: {
     "mobile": number,
@@ -20,6 +21,7 @@ let styles = {
     "--laptop-columns": columns.laptop,
     "padding-top": padding_vertical,
     "padding-bottom": padding_vertical,
+    "grid-row-gap": vertical_gap ? `${vertical_gap}px` : undefined,
 }
 
 $: filtered_styles = Object.entries(styles).filter(([_key, value]) => value !== undefined).map(([key, value]) => `${key}: ${value}`).join(";")

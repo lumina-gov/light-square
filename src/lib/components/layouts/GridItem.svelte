@@ -8,12 +8,13 @@ type BreakpointColumns<T = string> = {
 
 type JustifyContent = "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly" | "normal"
 type AlignItems = "flex-start" | "flex-end" | "center" | "baseline" | "stretch" | "normal"
-type FlexDirection = "row" | "row-reverse" | "column" | "column-reverse"
+type FlexDirection = "row" | "row-reverse" | "column" | "column-reverse" | "normal"
 
 export let padding: string | undefined = undefined
 export let gap: number | undefined = undefined
+export let tag = "div"
 
-export let flex_direction: FlexDirection | BreakpointColumns<FlexDirection> | undefined = undefined
+export let flex_direction: FlexDirection | BreakpointColumns<FlexDirection> | undefined = "column"
 export let justify_content: JustifyContent | BreakpointColumns<JustifyContent> | undefined = undefined
 export let align_items: AlignItems | BreakpointColumns<AlignItems> | undefined = undefined
 
@@ -45,9 +46,9 @@ $: styles_string = Object.entries(styles)
     .join(";")
 
 </script>
-<div class="grid-item" style={styles_string}>
+<svelte:element this={tag} class="grid-item" style={styles_string}>
     <slot/>
-</div>
+</svelte:element>
 <style lang="stylus">
 @import "variables"
 
@@ -55,9 +56,9 @@ $: styles_string = Object.entries(styles)
     display flex
     width 100%
     grid-column var(--laptop-columns)
-    justify-content var(--laptop-justify-content, normal)
-    align-items var(--laptop-align-items, normal)
-    flex-direction var(--laptop-flex-direction, column)
+    justify-content var(--laptop-justify-content)
+    align-items var(--laptop-align-items)
+    flex-direction var(--laptop-flex-direction)
     @media (max-width $tablet)
         grid-column var(--tablet-columns)
         justify-content var(--tablet-justify-content)

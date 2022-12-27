@@ -10,6 +10,24 @@ import type { PageServerLoad } from "./$types"
 export const load = (async ({ params }) => {
     const notion = new Client({ auth: env.NOTION_API_KEY })
 
+    const latest_posts = await notion.databases.query({
+        database_id: notion_data.news_database_id,
+        filter: {
+            property: "Published",
+            date: {
+                is_not_empty: true,
+            }
+        },
+        sorts: [
+            {
+                property: "Published",
+                direction: "descending"
+            }
+        ],
+        page_size: 5
+    })
+
+
     // get the page by slug
     const pages_response = await notion.databases.query({
         database_id: notion_data.news_database_id,
@@ -48,9 +66,22 @@ export const load = (async ({ params }) => {
 
     if (!isFullPage(page)) throw has_no_properties
 
-    return {
-        post: {
+    type Post = {
+        title: string,
+        slug: string,
+        date: Date,
+        tags: Array<{ name: string, slug: string }>,
+        authors: Array<{ name: string, slug: string, display_picture: string | null }>,
+    }
+
+    async function get_post(page_id: string): Promise<Post> {
+        const page = await notion.pages.retrieve({ page_id })
+
+        if (!isFullPage(page)) throw has_no_properties
+
+        return {
             title: (page.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
+            slug: (page.properties.Slug as { formula: { string: string }}).formula.string,
             date: new Date(Date.parse((page.properties.Published as DatePropertyItemObjectResponse).date!.start)),
             tags: await Promise.all((page.properties.Tags as { relation: Array<{ id: string }>}).relation.map(async tag => {
                 const tag_page = await notion.pages.retrieve({ page_id: tag.id })
@@ -73,7 +104,14 @@ export const load = (async ({ params }) => {
                     display_picture: (author_page.properties["Display Picture"] as { files: Array<{ file: { url: string } }> }).files[0]?.file.url || null
                 }
             })),
+        }
+    }
+
+    return {
+        post: {
+            ...await get_post(page_id),
             blocks
         },
+        latest_posts: await Promise.all(latest_posts.results.map(async page => await get_post(page.id)))
     }
 }) satisfies PageServerLoad
