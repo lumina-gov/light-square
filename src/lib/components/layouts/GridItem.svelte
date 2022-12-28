@@ -40,6 +40,7 @@ $: styles = {
     "gap": gap ? gap + "px" : undefined,
 }
 
+
 $: styles_string = Object.entries(styles)
     .filter(([_key, value]) => typeof value !== "undefined")
     .map(([key, value]) => key + ":" + value)
