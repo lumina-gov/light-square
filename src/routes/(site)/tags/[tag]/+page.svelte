@@ -5,6 +5,7 @@ import ResponsiveLayout from "$lib/components/layouts/ResponsiveLayout.svelte"
 import Breadcrumbs from "$lib/components/misc/Breadcrumbs.svelte"
 import Post from "$lib/components/news/Post.svelte"
 import PageHead from "$lib/components/PageHead.svelte"
+import site_data from "$lib/data/site_data"
 import Heading from "$lib/display/Heading.svelte"
 import Paragraph from "$lib/display/Paragraph.svelte"
 import type { PageData } from "./$types"
@@ -13,9 +14,9 @@ export let data: PageData
 </script>
 <Hero translucent={true}>
     <Breadcrumbs breadcrumbs={[
-        { name: "Home", url: "/" },
-        { name: "Tags", url: "/tags" },
-        { name: data.tag.title, url: `/tags/${data.tag.slug}` }
+        { name: "Home", url: site_data.url + "/" },
+        { name: "Tags", url: site_data.url + "/tags" },
+        { name: data.tag.title, url: site_data.url + `/tags/${data.tag.slug}` }
     ]}/>
     <Heading underline={true}>{ data.tag.title }</Heading>
 </Hero>
