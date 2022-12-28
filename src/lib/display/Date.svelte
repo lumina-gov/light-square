@@ -25,12 +25,12 @@ onMount(() => {
 })
 
 $: diff = now.getTime() - date.getTime()
-$: diff_in_seconds = Math.floor(diff / 1000)
-$: diff_in_minutes = Math.floor(diff_in_seconds / 60)
-$: diff_in_hours = Math.floor(diff_in_minutes / 60)
-$: diff_in_days = Math.floor(diff_in_hours / 24)
+$: diff_in_seconds = Math.ceil(diff / 1000)
+$: diff_in_minutes = Math.ceil(diff_in_seconds / 60)
+$: diff_in_hours = Math.ceil(diff_in_minutes / 60)
+$: diff_in_days = Math.ceil(diff_in_hours / 24)
 
-$: use_ago = diff_in_days < 3
+$: use_ago = diff_in_days <= 3
 $: units_ago = diff_in_hours < 1 ? "minute" : diff_in_days < 1 ? "hour" : "day"
 $: units = diff_in_hours < 1 ? diff_in_minutes : diff_in_days < 1 ? diff_in_hours : diff_in_days
 $: ago = `${units} ${units_ago}${units > 1 ? "s" : ""} ago`
