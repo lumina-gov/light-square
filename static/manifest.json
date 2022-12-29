@@ -1,6 +1,7 @@
 {
-    "short_name": "SITE_NAME",
-    "name": "SITE_NAME",
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "short_name": "Light Square",
+    "name": "Light Square",
     "start_url": "/",
     "icons": [
         {
@@ -21,5 +22,5 @@
     "shortcuts": [
 
     ],
-    "description": "Site description"
+    "description": "Light Square is a news publication dedicated to providing unbiased, investigative global news"
 }
