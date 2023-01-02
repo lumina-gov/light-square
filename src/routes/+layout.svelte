@@ -1,6 +1,7 @@
 <script lang="ts">
-    import AlertBar from "./AlertBar.svelte"
-    import PageLoaderBar from "./PageLoaderBar.svelte"
+import AlertBar from "./AlertBar.svelte"
+import PageLoaderBar from "./PageLoaderBar.svelte"
+import ServiceWorkerUI from "./ServiceWorkerUI.svelte"
 </script>
 <svelte:head>
     <meta charset="utf-8">
@@ -8,15 +9,16 @@
     <link rel="manifest" href="/manifest.json">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C6CCLY5L3K"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    gtag('config', 'G-C6CCLY5L3K');
+        gtag('config', 'G-C6CCLY5L3K');
     </script>
 </svelte:head>
 <PageLoaderBar/>
 <AlertBar/>
+<ServiceWorkerUI/>
 <slot/>
 
 <style lang="stylus">

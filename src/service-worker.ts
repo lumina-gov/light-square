@@ -6,19 +6,20 @@ declare let self: ServiceWorkerGlobalScope
 import { build, files, version } from "$service-worker"
 
 self.addEventListener("install", e => {
-    console.log("[Service Worker] Install")
+    console.info("[Service Worker] Install")
 
     e.waitUntil((async () => {
-        console.log("[Service Worker] Installing")
+        console.info("[Service Worker] Installing")
         const cache = await caches.open(version)
         await cache.addAll(files)
         await cache.addAll(build)
-        await cache.addAll(["/"])
-        console.log("[Service Worker] Cached all files")
-    })())
+        console.info("[Service Worker] Cached all files")
 
-    self.skipWaiting()
+        await self.skipWaiting()
+        console.info("[Service Worker] Skipped Waiting")
+    })())
 })
+
 
 self.addEventListener("fetch", event => {
     event.respondWith(get_response(event))
