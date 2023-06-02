@@ -1,10 +1,9 @@
 <script lang="ts">
+import type { NewsPostsHomeQuery } from "$lib/hygraph/graphql-types"
 
-export let authors: {
-    name: string
-    display_picture: string | null
-    slug: string
-}[]
+
+export let authors: NewsPostsHomeQuery["latest"][0]["authors"] = []
+export let with_href = false
 
 </script>
 <div class="authors">
@@ -12,14 +11,18 @@ export let authors: {
         By
     </div>
     {#each authors as author}
-        <a class="author" href="/authors/{author.slug}">
-            {#if author.display_picture}
-                <img src="{author.display_picture}" alt="{author.name} profile picture" class="author_img">
-            {/if}
+        <svelte:element
+            this={ with_href ? "a" : "div" }
+            class="author"
+            href={with_href ? `/authors/${author.slug}` : undefined}>
+            <img
+                class="author_img"
+                alt="{author.name} profile picture"
+                src={author.displayPicture.url}>
             <div class="author_name">
-                {author.name}
+                { author.name }
             </div>
-        </a>
+        </svelte:element>
     {/each}
 </div>
 <style lang="stylus">

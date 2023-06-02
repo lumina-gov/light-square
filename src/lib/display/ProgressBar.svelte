@@ -1,9 +1,11 @@
 <script>
-    export let width = 50
+export let width = 50
 </script>
 
 <div class="progress-bar">
-    <div class="inner-bar" style="width: {width}%;" />
+    <div
+        style:width="{ width }%"
+        class="inner-bar" />
 </div>
 
 <style lang="stylus">

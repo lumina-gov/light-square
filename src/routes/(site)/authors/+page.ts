@@ -1,5 +1,19 @@
-import type { PageLoad } from "./$types"
+import { AuthorsDocument } from "$lib/hygraph/graphql-types.js"
+import { error } from "@sveltejs/kit"
 
-export const load = (async ({ data }) => {
-    return data
-}) satisfies PageLoad
+export async function load({ parent }) {
+    const data = await parent()
+
+    const res = await data.graph.gquery(AuthorsDocument, {})
+
+    if (!res.data || res.error) {
+        throw error(500, {
+            message: res.error?.message || "Failed to load authors",
+            code: "FAILED_TO_LOAD_AUTHORS",
+        })
+    }
+
+    return {
+        authors: res.data.authors,
+    }
+}

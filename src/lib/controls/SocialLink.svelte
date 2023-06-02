@@ -7,11 +7,11 @@ export let href: string
 export let theme: "light" | "dark" = "dark"
 </script>
 <a
+    class:dark={ theme === "dark" }
+    class:light={ theme === "light" }
     href={href}
     rel="noreferrer"
-    target="_blank"
-    class:light={theme === "light"}
-    class:dark={theme === "dark"}>
+    target="_blank">
     <Icon icon={icon}/>
 </a>
 <style lang="stylus">

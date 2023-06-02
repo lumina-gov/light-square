@@ -3,9 +3,9 @@ import LogoEdge from "$lib/icons/LogoEdge.svelte"
 export let size = "48px"
 
 </script>
-<div class="icon" style="
-    --size: {size};
-">
+<div
+    style:--size={ size }
+    class="icon">
     <LogoEdge/>
 </div>
 <style lang="stylus">

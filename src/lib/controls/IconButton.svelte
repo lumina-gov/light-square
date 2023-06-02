@@ -10,7 +10,7 @@ export let icon: typeof SvelteComponent
 export let color: Prop<Icon, "color"> = "dark"
 export let opacity = false
 
-$: tag = href ? "a" : "div"
+$: tag = href ? "a" : "div" as "a" | "div"
 
 function clicked(e: Event) {
     dispatch("click", e)
@@ -24,16 +24,18 @@ function handle_keyup(e: KeyboardEvent) {
 </script>
 
 <svelte:element
-    this={tag}
-    href={href}
-    on:click={clicked}
-    on:keyup={handle_keyup}
-    role="button"
+    this={ tag }
     class="button"
-    tabindex="0"
     class:opacity
+    href={href}
+    role="button"
+    tabindex="0"
+    on:click={ clicked }
+    on:keyup={ handle_keyup }
 >
-    <Icon {icon} {color}/>
+    <Icon
+        {color}
+        {icon}/>
 </svelte:element>
 
 <style lang="stylus">

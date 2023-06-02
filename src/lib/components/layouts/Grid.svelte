@@ -28,9 +28,9 @@ $: filtered_styles = Object.entries(styles).filter(([_key, value]) => value !== 
 
 </script>
 <div
+    style={filtered_styles}
     class="grid"
-    class:side_padding
-    style={filtered_styles}>
+    class:side_padding>
     <slot/>
 </div>
 <style lang="stylus">

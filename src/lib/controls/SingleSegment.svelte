@@ -34,9 +34,9 @@ let dropdown_toggled = false
 <InputWrapper bind:name>
     <div class="tag">
         <Segment
-            on:click={() => dropdown_toggled = !dropdown_toggled}
             right_icon={value ? right_icon : Plus}
-            text={value ? get_title(value)  : placeholder}/>
+            text={value ? get_title(value)  : placeholder}
+            on:click={ () => dropdown_toggled = !dropdown_toggled }/>
         {#if dropdown_toggled}
             <ClickoutRegion clicked_outside={() => dropdown_toggled = false}>
                 <Inside>
@@ -46,23 +46,27 @@ let dropdown_toggled = false
                         {/if}
                         <!-- svelte-ignore a11y-click-events-have-key-events -->
                         <Options
-                            on:select={e => select_option(e.detail)}
-                            options={available_options}
                             display_no_more_options={!(typeof allow_other === "function" && search)}
+                            options={available_options}
+                            on:select={ e => select_option(e.detail) }
                             let:option>
                             <slot {option}>
                                 <Segment text={get_title(option)}/>
                             </slot>
-                            <slot name="option" {option}/>
+                            <slot
+                                name="option"
+                                {option}/>
                             <svelte:fragment slot="other">
                                 {#if typeof allow_other === "function" && search}
-                                    <div class="other-option" on:click={() => {
+                                    <div
+                                        class="other-option"
+                                        on:click={ () => {
                                             if (typeof allow_other === "function") {
                                                 value = allow_other(search)
                                                 search = ""
                                             }
-                                        }}>
-                                        Use "<strong>{search}</strong>"
+                                        } }>
+                                        Use "<strong>{ search }</strong>"
                                     </div>
                                 {/if}
                             </svelte:fragment>

@@ -5,11 +5,11 @@ export let active = false
 </script>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-    on:click|stopPropagation
-    tabindex="0"
-    role="button"
     class="profile-button-wrapper"
-    class:active>
+    class:active
+    role="button"
+    tabindex="0"
+    on:click|stopPropagation>
     <Profile/>
 </div>
 <style lang="stylus">

@@ -1,24 +1,12 @@
 <script lang="ts">
-    import Grid from "$lib/components/layouts/Grid.svelte"
-    import GridItem from "$lib/components/layouts/GridItem.svelte"
-    import ScrollbarRegion from "$lib/controls/ScrollbarRegion.svelte"
-    import SimplePost from "$lib/components/news/SimplePost.svelte"
+import Grid from "$lib/components/layouts/Grid.svelte"
+import GridItem from "$lib/components/layouts/GridItem.svelte"
+import ScrollbarRegion from "$lib/controls/ScrollbarRegion.svelte"
+import SimplePost from "$lib/components/news/SimplePost.svelte"
+import type { NewsPostsHomeQuery } from "$lib/hygraph/graphql-types"
 
 
-export let posts: {
-    title: string,
-    slug: string,
-    date: Date,
-    tags: {
-        name: string,
-        slug: string
-    }[],
-    authors: {
-        name: string,
-        slug: string
-        display_picture: string | null
-    }[],
-}[] = []
+export let posts: NewsPostsHomeQuery["latest"] = []
 
 
 </script>
@@ -29,31 +17,33 @@ export let posts: {
         "mobile": 4
     }}
     side_padding={false}>
-    <GridItem columns={{
-        "laptop": "span 6",
-        "tablet": "span 5",
-        "mobile": "span 4",
-    }}>
+    <GridItem
+        columns={{
+            "laptop": "span 6",
+            "tablet": "span 5",
+            "mobile": "span 4",
+        }}>
         <div class="gray">
             {#each posts.slice(0, 3) as post, i}
                 <SimplePost post={post}/>
-                {#if i < 2 }
+                {#if i < 2}
                     <hr>
                 {/if}
             {/each}
         </div>
     </GridItem>
-    <GridItem columns={{
-        "laptop": "span 4",
-        "tablet": "span 3",
-        "mobile": "span 4",
-    }}>
+    <GridItem
+        columns={{
+            "laptop": "span 4",
+            "tablet": "span 3",
+            "mobile": "span 4",
+        }}>
         <div class="container">
             <div class="inner">
                 <ScrollbarRegion>
                     {#each posts.slice(3) as post, i}
                         <SimplePost post={post}/>
-                        {#if i < posts.length - 4 }
+                        {#if i < posts.length - 4}
                             <hr>
                         {/if}
                     {/each}

@@ -40,7 +40,9 @@ let dropdown_toggled = false
             <slot {search}/>
             {#each values as value}
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <div on:click={() => remove_value(value)} class="selected-option">
+                <div
+                    class="selected-option"
+                    on:click={ () => remove_value(value) }>
                     <slot
                         name="selected"
                         {value}>
@@ -51,30 +53,44 @@ let dropdown_toggled = false
             <Inside>
                 <Segment
                     left_icon={dropdown_toggled ? CloseCircle : Plus}
-                    on:click={() => dropdown_toggled = !dropdown_toggled}/>
+                    on:click={ () => dropdown_toggled = !dropdown_toggled }/>
                 {#if dropdown_toggled}
                     <Dropdown>
                         {#if typeof options === "function"}
-                            <Search bind:search placeholder={search_placeholder}/>
+                            <Search
+                                placeholder={search_placeholder}
+                                bind:search/>
                         {/if}
                         <Options
+                            display_no_more_options={!(typeof allow_other === "function" && search)}
                             options={available_options}
-                            on:select={option => {
+                            on:select={ option => {
                                 values = [...values, option.detail]
                                 search = "" // Clear search
-                            }}
-                            display_no_more_options={!(typeof allow_other === "function" && search)}
+                            } }
                             let:option>
-                            <slot name="option" {option}/>
+                            <slot
+                                name="option"
+                                {option}/>
                             <svelte:fragment slot="other">
                                 {#if typeof allow_other === "function" && search}
-                                    <div class="other-option" on:click={() => {
+                                    <div
+                                        class="other-option"
+                                        on:keypress={ e => {
+                                            if (e.key === "Enter") {
+                                                if (typeof allow_other === "function") {
+                                                    values = [...values, allow_other(search)]
+                                                    search = ""
+                                                }
+                                            }
+                                        } }
+                                        on:click={ () => {
                                             if (typeof allow_other === "function") {
                                                 values = [...values, allow_other(search)]
                                                 search = ""
                                             }
-                                        }}>
-                                        Use "<strong>{search}</strong>"
+                                        } }>
+                                        Use "<strong>{ search }</strong>"
                                     </div>
                                 {/if}
                             </svelte:fragment>

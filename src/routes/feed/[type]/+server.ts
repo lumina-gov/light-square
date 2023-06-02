@@ -1,9 +1,6 @@
-import { env } from "$env/dynamic/private"
-import notion_data from "$lib/data/notion_data"
 import site_data from "$lib/data/site_data"
-import { has_no_properties } from "$lib/utils/notion_errors"
-import { Client, isFullPage } from "@notionhq/client"
-import type { DatePropertyItemObjectResponse, RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints"
+import { FeedDocument } from "$lib/hygraph/graphql-types.js"
+import { init_urql_hygraph } from "$lib/stores/graph"
 import { error, type RequestHandler } from "@sveltejs/kit"
 import { Feed } from "feed"
 
@@ -30,42 +27,33 @@ export const GET = (async ({ params }) => {
         },
     })
 
-    const notion = new Client({ auth: env.NOTION_API_KEY })
+    const graph = init_urql_hygraph()
 
-    const pages_response = await notion.databases.query({
-        database_id: notion_data.news_database_id,
-        page_size: 20,
-        filter: {
-            property: "Published",
-            date: {
-                is_not_empty: true,
-            }
-        }
-    })
+    const res = await graph.gquery(FeedDocument, {})
 
-    const pages = await Promise.all(pages_response.results.map(async page => {
-        if (!isFullPage(page)) throw has_no_properties
+    if (!res.data || res.error) {
+        throw error(500, {
+            message: res.error?.message || "Failed to load feed",
+            code: "FAILED_TO_LOAD_FEED",
+        })
+    }
 
-        return {
-            title: (page.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
-            date: new Date(Date.parse((page.properties.Published as DatePropertyItemObjectResponse).date!.start)),
-            link: site_data.url + "/news/" + (page.properties.Slug as { formula: { string: string }}).formula.string,
-            id: site_data.url + "/news/" + (page.properties.Slug as { formula: { string: string }}).formula.string,
-            author: await Promise.all((page.properties.Authors as { relation: Array<{ id: string }>}).relation.map(async author => {
-                const author_page = await notion.pages.retrieve({ page_id: author.id })
 
-                if (!isFullPage(author_page)) throw has_no_properties
-
-                return {
-                    name: (author_page.properties.Name as { title: Array<RichTextItemResponse> }).title.map(title => title.plain_text).join(""),
-                    link: site_data.url + "/authors/" + (author_page.properties.Slug as { formula: { string: string }}).formula.string,
-                }
+    res.data.newsPosts.forEach(page => {
+        feed.addItem({
+            date: new Date(page.publishedDate),
+            title: page.title,
+            id: `${site_data.url}/news/${page.slug}`,
+            link: `${site_data.url}/news/${page.slug}`,
+            content: page.content.map(item => item.__typename === "Markdown" ? item.markdown : "").join("\n"),
+            author: page.authors.map(author => ({
+                name: author.name,
+                link: `${site_data.url}/authors/${author.slug}`
             })),
-        }
-    }))
-
-    pages.forEach(page => {
-        feed.addItem(page)
+            category: page.tags.map(tag => ({
+                name: tag.name,
+            })),
+        })
     })
 
     switch (params.type) {
@@ -81,12 +69,12 @@ export const GET = (async ({ params }) => {
                 "Content-Type": "application/atom+xml"
             }
         })
-    case "rss":
-        return new Response(feed.rss2(), {
-            headers: {
-                "Content-Type": "application/rss+xml"
-            }
-        })
+    // case "rss":
+    //     return new Response(feed.rss2(), {
+    //         headers: {
+    //             "Content-Type": "application/rss+xml"
+    //         }
+    //     })
     default:
         throw error(500, {
             message: "Feed type not found",

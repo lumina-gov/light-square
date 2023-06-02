@@ -4,7 +4,7 @@ import Upload from "svelte-material-icons/Upload.svelte"
 </script>
 <div class="picker">
     <div class="img-wrapper">
-        <Upload size=24/>
+        <Upload size="24"/>
     </div>
     <div class="right-side">
         <div class="text">

@@ -5,5 +5,6 @@ import type { Thing, WithContext } from "schema-dts"
 export let schema: Thing | WithContext<Thing>
 </script>
 <svelte:head>
-    {@html serializeSchema(schema) }
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    {@html serializeSchema(schema)}
 </svelte:head>

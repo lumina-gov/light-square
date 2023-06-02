@@ -1,7 +1,7 @@
 <PageHead
-    title="Contact Us"
     description="Get in touch with us to ask questions, make media tips, suggestions, or report a problem."
-    />
+    title="Contact Us"
+/>
 <script lang="ts">
 import Hero from "$lib/components/layouts/Hero.svelte"
 import VerticalLayout from "$lib/components/layouts/VerticalLayout.svelte"
@@ -45,13 +45,24 @@ let links = [
 </Hero>
 <Hero>
     <div class="socials">
-        <Heading level={2} underline={true}>Contact Links</Heading>
+        <Heading
+            level={2}
+            underline={true}>Contact Links</Heading>
         <Paragraph>
-            Our email is <a href={"mailto:" + site_data.socials.email}>{site_data.socials.email}</a>
+            Our email is <a href={"mailto:" + site_data.socials.email}>{ site_data.socials.email }</a>
         </Paragraph>
-        <VerticalLayout max_width={200} align_items="stretch" gap={8}>
-            <FullSocialLink theme="light" icon={Twitter} href={site_data.socials.twitter}>Twitter</FullSocialLink>
-            <FullSocialLink theme="light" icon={Email} href={"mailto:" + site_data.socials.email}>Email</FullSocialLink>
+        <VerticalLayout
+            align_items="stretch"
+            gap={8}
+            max_width={200}>
+            <FullSocialLink
+                href={site_data.socials.twitter}
+                icon={Twitter}
+                theme="light">Twitter</FullSocialLink>
+            <FullSocialLink
+                href={"mailto:" + site_data.socials.email}
+                icon={Email}
+                theme="light">Email</FullSocialLink>
         </VerticalLayout>
     </div>
 </Hero>

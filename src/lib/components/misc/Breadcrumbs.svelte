@@ -24,9 +24,9 @@ let schema: WithContext<BreadcrumbList> = {
             <ChevronRight/>
         {/if}
         {#if index < breadcrumbs.length - 1}
-            <a href={breadcrumb.url}>{breadcrumb.name}</a>
+            <a href={breadcrumb.url}>{ breadcrumb.name }</a>
         {:else}
-            <span>{breadcrumb.name}</span>
+            <span>{ breadcrumb.name }</span>
         {/if}
     {/each}
 </div>

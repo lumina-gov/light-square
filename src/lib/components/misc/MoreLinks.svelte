@@ -9,12 +9,21 @@ export let links: { name: string, url: string, description: string }[]
 </script>
 
 <Hero translucent={true}>
-    <Heading level={2} underline={true}>More Information</Heading>
-    <ResponsiveLayout gap={16} min_item_size={200} align_items="strech">
+    <Heading
+        level={2}
+        underline={true}>More Information</Heading>
+    <ResponsiveLayout
+        align_items="strech"
+        gap={16}
+        min_item_size={200}>
         {#each links as link}
-            <a href={link.url} class="link">
-                <Heading left_icon={ChevronRight} level={3}>{link.name}</Heading>
-                <Paragraph>{link.description}</Paragraph>
+            <a
+                class="link"
+                href={link.url}>
+                <Heading
+                    left_icon={ChevronRight}
+                    level={3}>{ link.name }</Heading>
+                <Paragraph>{ link.description }</Paragraph>
             </a>
         {/each}
     </ResponsiveLayout>

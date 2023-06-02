@@ -4,10 +4,12 @@ export let url: string | undefined = undefined
 
 </script>
 
-<div class="profile" style="
-    --size: {size};
-    {url ? `background-image: url(${url})` : ""};
-">
+<div
+    style:--size={ size }
+    style="
+        {url ? `background-image: url(${url})` : ""};
+    "
+    class="profile">
 
 </div>
 <style lang="stylus">

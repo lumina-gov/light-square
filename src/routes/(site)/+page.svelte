@@ -1,6 +1,6 @@
 <PageHead
-    title="Front Page"
     description="Light Square is a news site that aims to provide a balanced and unbiased perspective on the world's most pressing issues."
+    title="Front Page"
     type="website"/>
 <SchemaComponent {schema}/>
 <script lang="ts">
@@ -17,7 +17,6 @@ import Newspaper from "svelte-material-icons/Newspaper.svelte"
 import ArrowRight from "svelte-material-icons/ArrowRight.svelte"
 import Pencil from "svelte-material-icons/Pencil.svelte"
 import PostGrid from "./PostGrid.svelte"
-import type { PageData } from "./$types"
 import FrontPageSection from "./FrontPageSection.svelte"
 import GridItem from "$lib/components/layouts/GridItem.svelte"
 
@@ -39,61 +38,67 @@ let schema: WithContext<NewsMediaOrganization> = {
     ],
 }
 
-export let data: PageData
+export let data
 
 </script>
 <Grid padding_vertical="36px">
     <GridItem
-        gap={16}
         columns={{
             "laptop": "2 / span 10",
             "tablet": "span 8",
             "mobile": "span 4"
-        }}>
+        }}
+        gap={16}>
         <Heading left_icon={Newspaper}>Front Page</Heading>
         <Paragraph>
             Top headlines, analysis and breaking news
         </Paragraph>
-        <FrontPageSection posts={data.latest_news}/>
+        <FrontPageSection posts={data.latest}/>
     </GridItem>
 </Grid>
 <hr>
 <Grid padding_vertical="36px">
     <GridItem
-        gap={16}
         columns={{
             "laptop": "2 / span 10",
             "tablet": "span 8",
             "mobile": "span 4"
-        }}>
-        <Heading left_icon={Pencil} level={2}>Editor's Picks</Heading>
+        }}
+        gap={16}>
+        <Heading
+            left_icon={Pencil}
+            level={2}>Editor's Picks</Heading>
         <PostGrid posts={data.editors_picks}/>
     </GridItem>
 </Grid>
 <hr>
-<a href="/editorial-policies" class="editorial-link">
+<a
+    class="editorial-link"
+    href="/editorial-policies">
     <Grid padding_vertical="36px">
         <GridItem
-            gap={16}
             align_items={{
                 "laptop": "center",
                 "tablet": "flex-start",
                 "mobile": "flex-start"
+            }}
+            columns={{
+                "laptop": "2 / span 10",
+                "tablet": "span 8",
+                "mobile": "span 4"
             }}
             flex_direction={{
                 "laptop": "row",
                 "tablet": "column",
                 "mobile": "column"
             }}
-            columns={{
-                "laptop": "2 / span 10",
-                "tablet": "span 8",
-                "mobile": "span 4"
-            }}>
+            gap={16}>
             <Tag>Editorial Policies</Tag>
             <div class="text">
                 <Paragraph>Read our editorial guiding principles and the standards our journalists follow </Paragraph>
-                <Icon color="brand" icon={ArrowRight}/>
+                <Icon
+                    color="brand"
+                    icon={ArrowRight}/>
             </div>
         </GridItem>
     </Grid>

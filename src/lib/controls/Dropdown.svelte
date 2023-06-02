@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { browser } from "$app/environment"
+import { browser } from "$app/environment"
 import { onDestroy, onMount } from "svelte"
 
 export let max_height = "300px"
@@ -11,39 +11,37 @@ let top = 0
 
 function resize() {
     // get the span's nearest parent who is not display: contents
-        let parent = wrapper.parentElement
-        while (parent && getComputedStyle(parent).display === "contents") {
-            parent = parent.parentElement
-        }
+    let parent = wrapper.parentElement
+    while (parent && getComputedStyle(parent).display === "contents") {
+        parent = parent.parentElement
+    }
 
-        if (!parent) return
+    if (!parent) return
 
-        left = parent.getBoundingClientRect().left
-        top = parent.getBoundingClientRect().bottom
+    left = parent.getBoundingClientRect().left
+    top = parent.getBoundingClientRect().bottom
 }
 
 onMount(() => {
-        resize()
-        window.addEventListener("resize", resize)
+    resize()
+    window.addEventListener("resize", resize)
 })
 onDestroy(() => {
-        if (browser) {
-            window.removeEventListener("resize", resize)
-        }
+    if (browser) {
+        window.removeEventListener("resize", resize)
+    }
 })
 </script>
 <div
+    bind:this={ wrapper }
+    style:left="{ left }px"
+    style:top="{ top }px"
     class="wrapper"
-    bind:this={wrapper}
-    style="
-        left: {left}px;
-        top: {top}px;
-    "
-    >
-    <div class="dropdown" style="
-        max-height: {max_height};
-        max-width: {max_width};
-    ">
+>
+    <div
+        style:max-height={ max_height }
+        style:max-width={ max_width }
+        class="dropdown">
         <slot/>
     </div>
 </div>

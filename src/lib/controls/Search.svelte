@@ -21,17 +21,19 @@ onMount(() => {
 
 </script>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="search-wrapper" on:click={() => search_el.focus()}>
+<div
+    class="search-wrapper"
+    on:click={ () => search_el.focus() }>
     <Magnify/>
     <input
-        on:keyup={e => {
+        bind:this={ search_el }
+        placeholder={placeholder}
+        on:keyup={ e => {
             if (e.key === "Enter") {
                 dispatch("submit", search)
             }
-        }}
-        placeholder={placeholder}
-        bind:this={search_el}
-        bind:value={search}/>
+        } }
+        bind:value={ search }/>
 
 </div>
 <style lang="stylus">

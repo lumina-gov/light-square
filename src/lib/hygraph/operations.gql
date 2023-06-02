@@ -1,0 +1,151 @@
+fragment BasicNewsPost on NewsPost {
+    createdAt
+    id
+    publishedDate
+    slug
+    title
+    updatedAt
+    tags {
+        ...BasicTag
+    }
+    authors {
+        ...BasicAuthor
+    }
+}
+
+fragment BasicTag on Tag {
+    name
+    slug
+}
+
+fragment BasicAuthor on Author {
+    name
+    slug
+    displayPicture {
+        url(transformation: {
+            image: {
+                resize: {
+                    width: 256
+                    height: 256
+                    fit: clip
+                }
+            }
+        })
+    }
+}
+
+query NewsPostsHome {
+    latest: newsPosts(orderBy: publishedDate_DESC, first: 8) {
+        ...BasicNewsPost
+    }
+
+    editorsPicks: newsPosts(where: {
+        tags_some: {
+            slug: "editors-picks"
+        }
+    }) {
+        ...BasicNewsPost
+    }
+}
+
+query NewsPost($slug: String!) {
+    newsPost(where: {
+        slug: $slug
+    }) {
+        ...BasicNewsPost
+        content {
+            __typename
+            ... on Markdown {
+                markdown
+            }
+        }
+    }
+
+    latest: newsPosts(orderBy: publishedDate_DESC, first: 5) {
+        ...BasicNewsPost
+    }
+}
+
+query TagPage($slug: String!, $first: Int!, $skip: Int!) {
+    tag(where: {
+        slug: $slug
+    }) {
+        ...BasicTag
+    }
+
+    newsPostsConnection(first: $first, skip: $skip, where: { tags_some: { slug: $slug } }, orderBy: publishedDate_DESC) {
+        edges {
+            cursor
+            node {
+                ...BasicNewsPost
+            }
+        }
+        pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+        }
+    }
+}
+
+query Tags {
+    tags {
+        ...BasicTag
+    }
+}
+
+query Authors {
+    authors {
+        ...BasicAuthor
+    }
+}
+
+query AuthorPage($slug: String!, $first: Int!, $skip: Int!) {
+    author(where: {
+        slug: $slug
+    }) {
+        ...BasicAuthor
+        content {
+            __typename
+            ... on Markdown {
+                markdown
+            }
+        }
+    }
+
+    newsPostsConnection(first: $first, skip: $skip, where: { authors_some: { slug: $slug } }, orderBy: publishedDate_DESC) {
+        edges {
+            cursor
+            node {
+                ...BasicNewsPost
+            }
+        }
+        pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+        }
+    }
+}
+
+query Feed {
+    newsPosts(orderBy: publishedDate_DESC, first: 30) {
+        ...BasicNewsPost
+        content {
+            __typename
+            ... on Markdown {
+                markdown
+            }
+        }
+    }
+}
+
+query Search($search: String!) {
+    newsPosts(where: {
+        _search: $search
+    }) {
+        ...BasicNewsPost
+    }
+}

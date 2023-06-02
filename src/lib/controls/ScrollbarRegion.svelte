@@ -6,17 +6,22 @@ let contents: Element
 </script>
 
 <div class="wrapper">
-    <div bind:this={viewport} class="viewport" tabindex="-1">
-        <div bind:this={contents} class="contents">
+    <div
+        bind:this={ viewport }
+        class="viewport"
+        tabindex="-1">
+        <div
+            bind:this={ contents }
+            class="contents">
             <slot/>
         </div>
     </div>
     <Scrollbar
-        {viewport}
-        {contents}
         alwaysVisible={true}
+        {contents}
         hideAfter={0}
-        />
+        {viewport}
+    />
 </div>
 
 <style lang="stylus">

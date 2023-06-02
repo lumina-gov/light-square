@@ -11,15 +11,15 @@ export let max_width: string | number = "100%"
 export let text_align: "left" | "center" | "right" = "left"
 export let min_item_size: number
 </script>
-<div class="layout" style="
-    grid-gap: {vertical_gap}px {horizontal_gap}px;
-    justify-content: {justify_content};
-    align-items: {align_items};
-    padding: {vertical_padding}px {horizontal_padding}px;
-    max-width: {typeof max_width === "number" ? max_width + "px" : max_width};
-    text-align: {text_align};
-    grid-template-columns: repeat(auto-fit, minmax({min_item_size}px, 1fr));
-">
+<div
+    style:grid-gap="{ vertical_gap }px { horizontal_gap }px"
+    style:justify-content={ justify_content }
+    style:max-width={ typeof max_width === "number" ? max_width + "px" : max_width }
+    style:padding="{ vertical_padding }px { horizontal_padding }px"
+    style:align-items={ align_items }
+    style:text-align={ text_align }
+    style:grid-template-columns="repeat(auto-fit, minmax({ min_item_size }px, 1fr))"
+    class="layout">
     <slot/>
 </div>
 <style lang="stylus">

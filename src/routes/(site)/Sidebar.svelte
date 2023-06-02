@@ -39,19 +39,27 @@ let links = [
     <div class="top">
         <div class="logo-close">
             <Logo size="28"/>
-            <IconButton icon={Close} on:click={() => dispatch("close")}/>
+            <IconButton
+                icon={Close}
+                on:click={ () => dispatch("close") }/>
         </div>
         <nav>
             {#each links as { title, href }}
                 <a {href}>
-                    <Icon icon={SquareBullet} opacity={$page.url.pathname === href ? 1 : 0.5} size={8} color={$page.url.pathname === href ? "brand" : "dark"}/>
+                    <Icon
+                        color={$page.url.pathname === href ? "brand" : "dark"}
+                        icon={SquareBullet}
+                        opacity={$page.url.pathname === href ? 1 : 0.5}
+                        size={8}/>
                     { title }
                 </a>
             {/each}
         </nav>
     </div>
     <div class="bottom">
-        <a class="editorial-policies" href="/editorial-policies">
+        <a
+            class="editorial-policies"
+            href="/editorial-policies">
             <Tag color="yellow">Editorial Policies</Tag>
             <div class="editorial-text">Read our editorial guiding principles <Icon icon={ArrowRight}/></div>
         </a>
@@ -59,16 +67,28 @@ let links = [
             <Heading level={3}>Trending</Heading>
             <div class="tags">
                 {#each trending as { title, slug }}
-                    <Tag color="white" href="/tags/{slug}">{ title }</Tag>
+                    <Tag
+                        color="white"
+                        href="/tags/{slug}">{ title }</Tag>
                 {/each}
             </div>
         </div>
         <div class="socials">
-            <SocialLink icon={Facebook} href={site_data.socials.facebook}/>
-            <SocialLink icon={Twitter} href={site_data.socials.twitter}/>
-            <SocialLink icon={TikTok} href={site_data.socials.tiktok}/>
-            <SocialLink icon={Youtube} href={site_data.socials.youtube}/>
-            <SocialLink icon={Email} href={"mailto:" + site_data.socials.email}/>
+            <SocialLink
+                href={site_data.socials.facebook}
+                icon={Facebook}/>
+            <SocialLink
+                href={site_data.socials.twitter}
+                icon={Twitter}/>
+            <SocialLink
+                href={site_data.socials.tiktok}
+                icon={TikTok}/>
+            <SocialLink
+                href={site_data.socials.youtube}
+                icon={Youtube}/>
+            <SocialLink
+                href={"mailto:" + site_data.socials.email}
+                icon={Email}/>
         </div>
     </div>
 </div>

@@ -34,7 +34,9 @@ export let sidebar_opened = false
 <header class:scrolled>
     <Grid>
         <div class="side left">
-            <IconButton icon={Menu} on:click={() => sidebar_opened = !sidebar_opened}/>
+            <IconButton
+                icon={Menu}
+                on:click={ () => sidebar_opened = !sidebar_opened }/>
             <div class="tablet">
                 <Logo size="28"/>
             </div>
@@ -43,8 +45,10 @@ export let sidebar_opened = false
             <Logo size="28"/>
             <div class="tags">
                 {#each trending as { slug, title }, i}
-                    <Tag color="dark" href={`/tags/${slug}`}>
-                        {title}
+                    <Tag
+                        color="dark"
+                        href={`/tags/${slug}`}>
+                        { title }
                     </Tag>
                     {#if i < trending.length - 1}
                         <VerticalDots/>
@@ -53,13 +57,18 @@ export let sidebar_opened = false
             </div>
         </div>
         <div class="side right">
-            <IconButton color="dark" icon={Search} href="/search"/>
+            <IconButton
+                color="dark"
+                href="/search"
+                icon={Search}/>
         </div>
     </Grid>
 </header>
 {#if sidebar_opened}
-    <Sidebar bind:trending on:close={() => sidebar_opened = false}/>
-    <ScrimOverlay on:close={() => sidebar_opened = false}/>
+    <Sidebar
+        bind:trending
+        on:close={ () => sidebar_opened = false }/>
+    <ScrimOverlay on:close={ () => sidebar_opened = false }/>
 {/if}
 <style lang="stylus">
 @import 'variables'

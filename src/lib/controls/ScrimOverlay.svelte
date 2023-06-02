@@ -4,7 +4,9 @@ import { createEventDispatcher } from "svelte"
 let dispatch = createEventDispatcher<{ close: void }>()
 </script>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="scrim" on:click={() => dispatch("close")}/>
+<div
+    class="scrim"
+    on:click={ () => dispatch("close") }/>
 <style lang="stylus">
 @import "variables"
 

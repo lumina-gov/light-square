@@ -22,15 +22,15 @@ function click() {
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
     class="card"
-    class:enabled={info.enabled}
+    class:enabled={ info.enabled }
     class:selected
-    on:click={click}
+    on:click={ click }
 >
     <div class="icon">
-        <svelte:component this={info.icon} />
+        <svelte:component this={ info.icon } />
     </div>
-    <div class="title">{info.title}</div>
-    <p>{info.description}</p>
+    <div class="title">{ info.title }</div>
+    <p>{ info.description }</p>
     {#if info.tag}
         <div>
             <Tag color="white">COMING SOON</Tag>

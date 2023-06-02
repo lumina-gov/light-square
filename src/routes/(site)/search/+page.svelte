@@ -9,26 +9,29 @@ import PageHead from "$lib/components/PageHead.svelte"
 import Search from "$lib/controls/Search.svelte"
 import Heading from "$lib/display/Heading.svelte"
 import Paragraph from "$lib/display/Paragraph.svelte"
-import type { PageData } from "./$types"
 
-export let data: PageData
+export let data
 
 </script>
 <Hero translucent={true}>
-    <Breadcrumbs breadcrumbs={[
-        { name: "Home", url: "/" },
-        { name: "Search", url: "/search" },
-        ...(data.query ? [{ name: data.query, url: `/sear
+    <Breadcrumbs
+        breadcrumbs={[
+            { name: "Home", url: "/" },
+            { name: "Search", url: "/search" },
+            ...(data.query ? [{ name: data.query, url: `/sear
             ch?q=${data.query}` }] : [])
-    ]}/>
+        ]}/>
     <Heading underline={true}>Search</Heading>
-    <Search autofocus={true} search={data.query} on:submit={event => goto(`/search?q=${encodeURIComponent(event.detail)}`)}/>
+    <Search
+        autofocus={true}
+        search={data.query}
+        on:submit={ event => goto(`/search?q=${encodeURIComponent(event.detail)}`) }/>
 </Hero>
 <Hero>
     <Heading level={2}>Search Results</Heading>
-    {#if data.items.length > 0}
+    {#if data.posts.length > 0}
         <ResponsiveLayout min_item_size={300}>
-            {#each data.items as post}
+            {#each data.posts as post}
                 <Post post={post}/>
             {/each}
         </ResponsiveLayout>

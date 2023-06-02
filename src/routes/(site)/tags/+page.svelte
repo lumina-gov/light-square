@@ -1,4 +1,6 @@
-<PageHead title="All Tags" description="List of all news sections"/>
+<PageHead
+    description="List of all news sections"
+    title="All Tags"/>
 <script lang="ts">
 import Hero from "$lib/components/layouts/Hero.svelte"
 import VerticalLayout from "$lib/components/layouts/VerticalLayout.svelte"
@@ -6,9 +8,8 @@ import PageHead from "$lib/components/PageHead.svelte"
 import Heading from "$lib/display/Heading.svelte"
 import Paragraph from "$lib/display/Paragraph.svelte"
 import Tag from "$lib/display/Tag.svelte"
-import type { PageData } from "./$types"
 
-export let data: PageData
+export let data
 
 </script>
 <Hero translucent={true}>
@@ -24,7 +25,9 @@ export let data: PageData
     <div class="flex-wrap">
         {#each data.tags as tag}
             <div class="tag">
-                <Tag href="/tags/{tag.slug}" name={tag.name}/>
+                <Tag
+                    name={tag.name}
+                    href="/tags/{tag.slug}"/>
             </div>
         {/each}
     </div>

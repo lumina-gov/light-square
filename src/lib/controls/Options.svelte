@@ -38,10 +38,12 @@ export function focus() {
 <ScrollbarRegion>
     {#each options as option, i}
         <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-        <div class="option"
-            bind:this={els[i]}
-            on:keyup={e => handle_keypress(e, i)}
-            on:click={() => dispatch("select", option)} tabindex="0">
+        <div
+            bind:this={ els[i] }
+            class="option"
+            tabindex="0"
+            on:keyup={ e => handle_keypress(e, i) }
+            on:click={ () => dispatch("select", option) }>
             <slot {option}/>
         </div>
     {/each}

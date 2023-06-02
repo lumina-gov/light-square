@@ -7,6 +7,7 @@ declare global {
         // interface Locals {}
         interface PageData {
             alerts: AlertsStore!;
+            graph: GraphClient;
         }
         interface Error {
             code?: string;

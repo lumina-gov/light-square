@@ -2,10 +2,15 @@
 export let color: "red" | "brand" | "blue" | "white" | "yellow" | "dark" = "brand"
 export let href: string | undefined = undefined
 export let name: string | undefined = undefined
-$: tag = href ? "a" : "span"
+$: tag = href ? "a" : "span" as "a" | "span"
 </script>
 
-<svelte:element this={tag} {href} class="tag {color}" class:interactive={href} role="button">
+<svelte:element
+    this={ tag }
+    class="tag {color}"
+    class:interactive={ href }
+    {href}
+    role="button">
     <div class="text">
         {#if name}
             { name }

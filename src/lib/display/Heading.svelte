@@ -8,19 +8,28 @@ export let left_icon: typeof SvelteComponent | null = null
 export let left_icon_color: Prop<Icon, "color"> = "brand"
 export let right_icon: typeof SvelteComponent | null = null
 export let right_icon_color: Prop<Icon, "color"> = "brand"
-export let level: 1 | 2 | 3 | 4 = 1
+export let level: 1 | 2 | 3 | 4 | 5 | 6 = 1
+export let id: string | null = null
 export let underline = false
 </script>
 
-<svelte:element this={"h" + level} class="heading" class:underline>
+<svelte:element
+    this={ "h" + level }
+    {id}
+    class="heading"
+    class:underline>
     {#if left_icon}
-        <Icon color={left_icon_color} icon={left_icon}/>
+        <Icon
+            color={left_icon_color}
+            icon={left_icon}/>
     {/if}
     <span>
         <slot/>
     </span>
     {#if right_icon}
-        <Icon color={right_icon_color} icon={right_icon}/>
+        <Icon
+            color={right_icon_color}
+            icon={right_icon}/>
     {/if}
 </svelte:element>
 <style lang="stylus">

@@ -47,7 +47,10 @@ $: styles_string = Object.entries(styles)
     .join(";")
 
 </script>
-<svelte:element this={tag} class="grid-item" style={styles_string}>
+<svelte:element
+    this={ tag }
+    style={styles_string}
+    class="grid-item">
     <slot/>
 </svelte:element>
 <style lang="stylus">

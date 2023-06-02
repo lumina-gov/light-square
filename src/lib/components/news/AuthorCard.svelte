@@ -1,22 +1,21 @@
 <script lang="ts">
 import Profile from "$lib/display/Profile.svelte"
 import Tag from "$lib/display/Tag.svelte"
+import type { BasicAuthorFragment } from "$lib/hygraph/graphql-types"
 import VerticalLayout from "../layouts/VerticalLayout.svelte"
 
-export let author: {
-    name: string
-    display_picture: string | null
-    slug: string
-}
+export let author: BasicAuthorFragment
 </script>
-<a href="/authors/{author.slug}" class="author-card">
-    {#if author.display_picture}
-        <Profile url={author.display_picture} size="64px"/>
-    {/if}
+<a
+    class="author-card"
+    href="/authors/{author.slug}">
+    <Profile
+        size="64px"
+        url={author.displayPicture.url}/>
     <VerticalLayout gap={8}>
         <Tag color="yellow">Journalist</Tag>
         <div class="author-name">
-            {author.name}
+            { author.name }
         </div>
     </VerticalLayout>
 </a>

@@ -1,6 +1,6 @@
 <PageHead
-    title="About Light Square"
-    description="Light Square is a news site that aims to provide a balanced and unbiased perspective on the world's most pressing issues."/>
+    description="Light Square is a news site that aims to provide a balanced and unbiased perspective on the world's most pressing issues."
+    title="About Light Square"/>
 <script>
 import Hero from "$lib/components/layouts/Hero.svelte"
 import VerticalLayout from "$lib/components/layouts/VerticalLayout.svelte"

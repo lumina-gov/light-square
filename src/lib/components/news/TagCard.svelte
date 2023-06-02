@@ -7,7 +7,9 @@ export let tag: {
     slug: string,
 }
 </script>
-<a href="/tags/{tag.slug}" class="tag">
+<a
+    class="tag"
+    href="/tags/{tag.slug}">
     <Tag>{ tag.name }</Tag>
 </a>
 <style lang="stylus">

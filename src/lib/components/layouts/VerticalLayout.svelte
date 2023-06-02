@@ -9,15 +9,15 @@ export let max_width: string | number = "100%"
 export let text_align: "left" | "center" | "right" = "left"
 export let margin_auto = false
 </script>
-<div class="layout" style="
-    gap: {gap}px;
-    justify-content: {justify_content};
-    align-items: {align_items};
-    padding: {vertical_padding}px {horizontal_padding}px;
-    max-width: {typeof max_width === "number" ? max_width + "px" : max_width};
-    text-align: {text_align};
-    margin: {margin_auto ? "auto" : "0"};
-">
+<div
+    style:gap="{ gap }px"
+    style:justify-content={ justify_content }
+    style:max-width={ typeof max_width === "number" ? max_width + "px" : max_width }
+    style:padding="{ vertical_padding }px { horizontal_padding }px"
+    style:align-items={ align_items }
+    style:text-align={ text_align }
+    style:margin={ margin_auto ? "auto" : "0" }
+    class="layout">
     <slot/>
 </div>
 <style lang="stylus">

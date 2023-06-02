@@ -1,5 +1,6 @@
 <script lang="ts">
-import { createEventDispatcher, SvelteComponent } from "svelte"
+import type { SvelteComponent } from "svelte"
+import { createEventDispatcher } from "svelte"
 
 let dispatch = createEventDispatcher()
 
@@ -25,36 +26,42 @@ function handle_keyup(e: KeyboardEvent) {
     }
 }
 
-$: tag = href ? "a" : "div"
+$: tag = href ? "a" : "div" as "a" | "div"
 </script>
 
 <svelte:element
-    this={tag}
-    href={href}
-    on:click={click}
-    on:keyup={handle_keyup}
-    role="button"
-    class:disabled
-    tabindex={disabled ? -1 : 0}
+    this={ tag }
     class="segment {style}"
+    class:disabled
+    href={href}
+    role="button"
+    tabindex={disabled ? -1 : 0}
+    on:click={ click }
+    on:keyup={ handle_keyup }
 >
     {#if left_icon}
-        <span class="icon" style="opacity: {left_icon_opacity};">
-            <svelte:component this={left_icon} />
+        <span
+            style:opacity={ left_icon_opacity }
+            class="icon">
+            <svelte:component this={ left_icon } />
         </span>
     {/if}
     {#if text || $$slots.default}
-        <div class="text" style="opacity: {text_opacity};">
+        <div
+            style:opacity={ text_opacity }
+            class="text">
             {#if text}
-                {text}
+                { text }
             {:else}
                 <slot/>
             {/if}
         </div>
     {/if}
     {#if right_icon}
-        <span class="icon" style="opacity: {right_icon_opacity};">
-            <svelte:component this={right_icon} />
+        <span
+            style:opacity={ right_icon_opacity }
+            class="icon">
+            <svelte:component this={ right_icon } />
         </span>
     {/if}
 </svelte:element>
@@ -64,8 +71,8 @@ $: tag = href ? "a" : "div"
 
 .segment
     padding 6px
-    background transparify(white, 6%)
-    color white
+    background transparify($dark, 6%)
+    color $dark
     display inline-flex
     align-items center
     justify-content center
@@ -79,7 +86,7 @@ $: tag = href ? "a" : "div"
         font-size: 20px
         display: inline-flex
     &:hover
-        background transparify(white, 10%)
+        background transparify($dark, 10%)
     &:focus-visible
         outline $brand 2px dashed
         outline-offset 2px
@@ -91,5 +98,5 @@ $: tag = href ? "a" : "div"
         cursor default
         opacity 0.5
         background transparent
-        border 1px solid transparify(white, 10%)
+        border 1px solid transparify($dark, 10%)
 </style>

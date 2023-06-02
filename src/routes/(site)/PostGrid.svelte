@@ -3,22 +3,19 @@ import Authors from "$lib/display/Authors.svelte"
 import DateComponent from "$lib/display/Date.svelte"
 import Heading from "$lib/display/Heading.svelte"
 import Tags from "$lib/display/Tags.svelte"
+import type { NewsPostsHomeQuery } from "$lib/hygraph/graphql-types"
 
 
-export let posts: {
-    tags: { slug: string, name: string }[],
-    title: string,
-    date: Date,
-    slug: string,
-    authors: { name: string, slug: string, display_picture: string | null }[],
-}[] = []
+export let posts: NewsPostsHomeQuery["editorsPicks"]
 </script>
 <div class="grid">
     {#each posts as post}
-        <a href="/news/{post.slug}" class="post">
-            <DateComponent date={post.date}/>
+        <a
+            class="post"
+            href="/news/{post.slug}">
+            <DateComponent date={new Date(post.publishedDate)}/>
             <Tags tags={post.tags}/>
-            <Heading level={3}>{post.title}</Heading>
+            <Heading level={3}>{ post.title }</Heading>
             <Authors authors={post.authors}/>
         </a>
     {/each}

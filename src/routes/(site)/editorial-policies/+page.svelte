@@ -1,6 +1,6 @@
 <PageHead
-    title="Editorial Policies & Guidelines"
-    description="Light Square sets high standards for the quality of its content, and the information on this site will help you trust those standards."/>
+    description="Light Square sets high standards for the quality of its content, and the information on this site will help you trust those standards."
+    title="Editorial Policies & Guidelines"/>
 <script lang="ts">
 import Hero from "$lib/components/layouts/Hero.svelte"
 import VerticalLayout from "$lib/components/layouts/VerticalLayout.svelte"
@@ -62,43 +62,57 @@ let links = [
 
         <Heading level={2}>Editorial Policies</Heading>
 
-        <Heading level={3} underline={true}>Accuracy</Heading>
+        <Heading
+            level={3}
+            underline={true}>Accuracy</Heading>
         <Paragraph>
             We strive to be accurate in all of our reporting, and we take great care to ensure that our content is factually correct.
             We verify all information before publication, and we make every effort to ensure that our reporting is accurate and fair.
         </Paragraph>
 
-        <Heading level={3} underline={true}>Fairness</Heading>
+        <Heading
+            level={3}
+            underline={true}>Fairness</Heading>
         <Paragraph>
             We strive to be fair in all of our reporting, and we take great care to ensure that our content is fair and impartial.
             We strive to present a range of perspectives in our coverage, and we aim to be open and transparent in our reporting.
         </Paragraph>
 
-        <Heading level={3} underline={true}>Impartiality</Heading>
+        <Heading
+            level={3}
+            underline={true}>Impartiality</Heading>
         <Paragraph>
             We strive to be impartial in all of our reporting, and we take great care to ensure that our content is fair and impartial.
             We strive to present a range of perspectives in our coverage, and we aim to be open and transparent in our reporting.
         </Paragraph>
 
-        <Heading level={3} underline={true}>Independence</Heading>
+        <Heading
+            level={3}
+            underline={true}>Independence</Heading>
         <Paragraph>
             We strive to be independent in all of our reporting, and we take great care to ensure that our content is fair and impartial.
             We strive to present a range of perspectives in our coverage, and we aim to be open and transparent in our reporting.
         </Paragraph>
 
-        <Heading level={3} underline={true}>Integrity</Heading>
+        <Heading
+            level={3}
+            underline={true}>Integrity</Heading>
         <Paragraph>
             We believe in transparency and honesty, and we strive to be open and accountable to our readers.
             We strive to uphold the highest standards of journalism and editorial integrity, and we hold ourselves accountable to these standards.
         </Paragraph>
 
-        <Heading level={3} underline={true}>Acknowledging & Fixing Errors</Heading>
+        <Heading
+            level={3}
+            underline={true}>Acknowledging & Fixing Errors</Heading>
         <Paragraph>
             We strive to be accurate in all of our reporting, and we take great care to ensure that our content is factually correct.
             We verify all information before publication, and we make every effort to ensure that our reporting is accurate and fair.
         </Paragraph>
 
-        <Heading level={3} underline={true}>Objectiveness</Heading>
+        <Heading
+            level={3}
+            underline={true}>Objectiveness</Heading>
         <Paragraph>
             Excluding articles marked as "Opinion" pieces, we strive to be objective in all of our reporting.
             Ensuring, as much as possible, that our content is factually correct, and unbiased from the personal opinions of our writers.

@@ -1,29 +1,19 @@
 <script lang="ts">
-    import Authors from "$lib/display/Authors.svelte"
+import Authors from "$lib/display/Authors.svelte"
 import DateComponent from "$lib/display/Date.svelte"
-    import Tags from "$lib/display/Tags.svelte"
+import Tags from "$lib/display/Tags.svelte"
+import type { BasicNewsPostFragment } from "$lib/hygraph/graphql-types"
 
 
-export let post: {
-    title: string,
-    slug: string,
-    date: Date,
-    tags: {
-        name: string,
-        slug: string
-    }[],
-    authors: {
-        name: string,
-        slug: string
-        display_picture: string | null
-    }[],
-}
+export let post: BasicNewsPostFragment
 
 </script>
-<a href="/news/{post.slug}" class="post">
-    <DateComponent date={post.date}/>
+<a
+    class="post"
+    href="/news/{post.slug}">
+    <DateComponent date={new Date(post.publishedDate)}/>
     <Tags tags={post.tags}/>
-    <h3>{post.title}</h3>
+    <h3>{ post.title }</h3>
     <Authors authors={post.authors}/>
 </a>
 <style lang="stylus">

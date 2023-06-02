@@ -232,19 +232,21 @@ onDestroy(() => {
 </script>
 
 {#if visible}
-<div
-    class="v-scrollbar"
-    class:fixed={windowScrollEnabled}
-    style="height: {trackHeight}px; margin: {marginTop}px {marginRight}px {marginBottom}px {marginLeft}px">
     <div
-        bind:this={vTrack}
-        class="v-track"
-        style="height: {trackHeight}px"/>
-    <div
-        bind:this={vThumb}
-        class="v-thumb"
-        style="height: {thumbHeight}px; top: {thumbTop}px"/>
-</div>
+        style:height="{ trackHeight }px"
+        style:margin="{ marginTop }px { marginRight }px { marginBottom }px { marginLeft }px"
+        class="v-scrollbar"
+        class:fixed={ windowScrollEnabled }>
+        <div
+            bind:this={ vTrack }
+            style:height="{ trackHeight }px"
+            class="v-track"/>
+        <div
+            bind:this={ vThumb }
+            style:height="{ thumbHeight }px"
+            style:top="{ thumbTop }px"
+            class="v-thumb"/>
+    </div>
 {/if}
 
 <style>

@@ -6,16 +6,16 @@ import Breadcrumbs from "$lib/components/misc/Breadcrumbs.svelte"
 import AuthorCard from "$lib/components/news/AuthorCard.svelte"
 import PageHead from "$lib/components/PageHead.svelte"
 import Heading from "$lib/display/Heading.svelte"
-import type { PageData } from "./$types"
 
-export let data: PageData
+export let data
 
 </script>
 <Hero translucent={true}>
-    <Breadcrumbs breadcrumbs={[
-        { name: "Home", url: "/" },
-        { name: "Authors", url: "/authors" },
-    ]}/>
+    <Breadcrumbs
+        breadcrumbs={[
+            { name: "Home", url: "/" },
+            { name: "Authors", url: "/authors" },
+        ]}/>
     <Heading underline={true}>Authors</Heading>
 </Hero>
 <Hero>

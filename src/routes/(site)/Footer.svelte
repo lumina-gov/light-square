@@ -51,8 +51,12 @@ export let trending = [
         <div class="inner">
             <div>
                 <Logo size="40"/>
-                <a href="/about-us" class="more-link">
-                    More about Light Square <Icon icon={ArrowRight} color="brand"/>
+                <a
+                    class="more-link"
+                    href="/about-us">
+                    More about Light Square <Icon
+                        color="brand"
+                        icon={ArrowRight}/>
                 </a>
                 <Paragraph>
                     Your home for conversations, stories and events that shape the world.
@@ -66,7 +70,9 @@ export let trending = [
                 <SmallTitle>Sections</SmallTitle>
                 <nav class="sections">
                     {#each sections as { name, slug }}
-                        <a href="/tags/{slug}" class="link">{name}</a>
+                        <a
+                            class="link"
+                            href="/tags/{slug}">{ name }</a>
                     {/each}
                 </nav>
             </div>
@@ -74,7 +80,9 @@ export let trending = [
                 <SmallTitle>Trending</SmallTitle>
                 <nav class="sections-single">
                     {#each trending as { name, slug }}
-                        <a href="/tags/{slug}" class="link">{name}</a>
+                        <a
+                            class="link"
+                            href="/tags/{slug}">{ name }</a>
                     {/each}
                 </nav>
             </div>
@@ -84,11 +92,21 @@ export let trending = [
                     Follow us on social media for more news.
                 </Paragraph>
                 <div class="sections-single">
-                    <FullSocialLink icon={Facebook} href={site_data.socials.facebook}>Facebook</FullSocialLink>
-                    <FullSocialLink icon={Twitter} href={site_data.socials.twitter}>Twitter</FullSocialLink>
-                    <FullSocialLink icon={TikTok} href={site_data.socials.tiktok}>TikTok</FullSocialLink>
-                    <FullSocialLink icon={Youtube} href={site_data.socials.youtube}>Youtube</FullSocialLink>
-                    <FullSocialLink icon={Email} href={"mailto:" + site_data.socials.email}>Email</FullSocialLink>
+                    <FullSocialLink
+                        href={site_data.socials.facebook}
+                        icon={Facebook}>Facebook</FullSocialLink>
+                    <FullSocialLink
+                        href={site_data.socials.twitter}
+                        icon={Twitter}>Twitter</FullSocialLink>
+                    <FullSocialLink
+                        href={site_data.socials.tiktok}
+                        icon={TikTok}>TikTok</FullSocialLink>
+                    <FullSocialLink
+                        href={site_data.socials.youtube}
+                        icon={Youtube}>Youtube</FullSocialLink>
+                    <FullSocialLink
+                        href={"mailto:" + site_data.socials.email}
+                        icon={Email}>Email</FullSocialLink>
                 </div>
             </div>
         </div>
@@ -96,17 +114,35 @@ export let trending = [
     <div class="middle">
         <div class="inner">
             <nav class="horizontal-links">
-                <a class="link" href="/editorial-policies">Editorial Policies</a>
-                <a class="link" href="/about-us">About Us</a>
-                <a class="link" href="/contact-us">Contact Us</a>
-                <a class="link" href="https://lumina.earth">Lumina Government Website</a>
+                <a
+                    class="link"
+                    href="/editorial-policies">Editorial Policies</a>
+                <a
+                    class="link"
+                    href="/about-us">About Us</a>
+                <a
+                    class="link"
+                    href="/contact-us">Contact Us</a>
+                <a
+                    class="link"
+                    href="https://lumina.earth">Lumina Government Website</a>
             </nav>
             <div class="socials">
-                <SocialLink icon={Facebook} href={site_data.socials.facebook}/>
-                <SocialLink icon={Twitter} href={site_data.socials.twitter}/>
-                <SocialLink icon={TikTok} href={site_data.socials.tiktok}/>
-                <SocialLink icon={Youtube} href={site_data.socials.youtube}/>
-                <SocialLink icon={Email} href={"mailto:" + site_data.socials.email}/>
+                <SocialLink
+                    href={site_data.socials.facebook}
+                    icon={Facebook}/>
+                <SocialLink
+                    href={site_data.socials.twitter}
+                    icon={Twitter}/>
+                <SocialLink
+                    href={site_data.socials.tiktok}
+                    icon={TikTok}/>
+                <SocialLink
+                    href={site_data.socials.youtube}
+                    icon={Youtube}/>
+                <SocialLink
+                    href={"mailto:" + site_data.socials.email}
+                    icon={Email}/>
             </div>
         </div>
     </div>
