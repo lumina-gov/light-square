@@ -65,7 +65,7 @@ let links = [
         <div class="section">
             <Heading level={2}>Our History</Heading>
             <Paragraph>
-                Light Square was founded in 2021 by the people of Lumina and journalists and technologists who were frustrated by the lack of quality news sources on the internet.
+                Light Square was founded in December 2022 by the people of Lumina and journalists and technologists who were frustrated by the lack of quality news sources on the internet.
             </Paragraph>
             <Paragraph>
                 We believe that the internet should be a place where people can find reliable, unbiased information about the world around them.
