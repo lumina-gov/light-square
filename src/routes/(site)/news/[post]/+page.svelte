@@ -26,9 +26,11 @@ export const schema: WithContext<NewsArticle> = {
     "@type": "NewsArticle",
     "headline": data.post.title,
     "datePublished": new Date(data.post.publishedDate).toISOString(),
-    "author": [
-
-    ],
+    "author": data.post.authors.map(author => ({
+        "@type": "Person",
+        "name": author.name,
+        "url": `${site_data.url}/authors/${author.slug}`,
+    })),
     "publisher": {
         "@type": "NewsMediaOrganization",
         "name": "Light Square",
