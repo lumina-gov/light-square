@@ -20,7 +20,7 @@ import MarkdownRenderer from "$lib/display/MarkdownRenderer.svelte"
 
 export let data
 
-export const schema: WithContext<NewsArticle> = {
+$: schema = {
     "@context": "https://schema.org",
     "@id": $page.url.hostname + $page.url.pathname,
     "@type": "NewsArticle",
@@ -40,7 +40,7 @@ export const schema: WithContext<NewsArticle> = {
         "@type": "Country",
         "name": "Lumina",
     },
-}
+} satisfies WithContext<NewsArticle>
 
 </script>
 <Grid
