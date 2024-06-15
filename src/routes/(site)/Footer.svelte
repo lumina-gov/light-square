@@ -14,6 +14,7 @@ import ArrowRight from "svelte-material-icons/ArrowRight.svelte"
 import Paragraph from "$lib/display/Paragraph.svelte"
 import FullSocialLink from "$lib/controls/FullSocialLink.svelte"
 import Lumina from "$lib/icons/Lumina.svelte"
+import Circle from "svelte-material-icons/Circle.svelte"
 
 export let sections = [
     { name: "World", slug: "world" },
@@ -147,7 +148,21 @@ export let trending = [
         </div>
     </div>
     <div class="impressum">
-        <Lumina size="20px"/> Official Independent Organisation of the Lumina Government
+        <a
+            class="impressum-link"
+            href="https://lumina.earth">
+            <Lumina size="20px"/> Lumina Government Institution
+        </a>
+        <Icon
+            icon={Circle}
+            opacity={0.5}
+            size={8}/>
+        <a
+            class="impressum-link"
+            href="https://warpdigital.com">
+            Website by Warp Digital
+        </a>
+
     </div>
     <div class="impressum">
         <Web size="20px"/> All content released in the public domain
@@ -252,4 +267,9 @@ footer
     @media (max-width $mobile)
         flex-direction column
         gap 8px
+    .impressum-link
+        display flex
+        align-items center
+        gap 8px
+
 </style>
