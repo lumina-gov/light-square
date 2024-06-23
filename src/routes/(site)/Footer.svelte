@@ -159,7 +159,7 @@ export let trending = [
             size={8}/>
         <a
             class="impressum-link"
-            href="https://warpdigital.com">
+            href="https://warpdigital.com.au">
             Website by Warp Digital
         </a>
 
